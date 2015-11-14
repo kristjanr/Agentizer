@@ -1,3 +1,4 @@
+import logging
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
@@ -23,7 +24,7 @@ def send_sms(request):
         to='+37253498963',
     )
     r = requests.post('https://api2.messente.com/send_sms/', data=post_body)
-    print(r)
+    logging.warning('post response: ', r)
     return render(request, 'app/sms_sent.html')
 
 def respond(request):
