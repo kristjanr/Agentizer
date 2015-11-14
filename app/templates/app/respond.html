@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>This is a full tour description</p>
+<form action="accept" method="post">
+    {% csrf_token %}
+    <input type="submit" value="yes" name="yes">
+    <input type="submit" value="no" name="no">
+</form>
+</body>
+</html>
