@@ -1,0 +1,1 @@
+web: gunicorn AgentOrganizer.wsgi --log-file -
