@@ -1,6 +1,6 @@
 {% extends "app/base.html" %}
 {% block content %}
-    <form action="http://api2.messente.com/send_sms/" method="post">
+    <form action="send_sms" method="post">
         {% csrf_token %}
         <table>
             <tr>
@@ -9,14 +9,14 @@
                 <th>send sms</th>
             </tr>
             <tr>
-                <td>Mr Tour Guide</td>
+                <td>Mr Tour Guide (The one and only)</td>
                 <td>555 1234 5678</td>
                 <td>
                     <input type="checkbox">
-                    <input type="hidden" name="username" value="f35583f5f9fcd7a8a13f36a10afca6aa">
-                    <input type="hidden" name="password" value="ea2254154190fab7a6a33c3ec79a21f0">
-                    <input type="hidden" name="text" value="A short Tour description. Accept the Tour: https://intense-tor-6246.herokuapp.com/app/respond">
-                    <input type="hidden" name="to" value="+37253498963">
+{#                    <input type="hidden" name="username" value="f35583f5f9fcd7a8a13f36a10afca6aa">#}
+{#                    <input type="hidden" name="password" value="ea2254154190fab7a6a33c3ec79a21f0">#}
+{#                    <input type="hidden" name="text" value="A short Tour description. Accept the Tour: https://intense-tor-6246.herokuapp.com/app/respond">#}
+{#                    <input type="hidden" name="to" value="+37253498963">#}
                 </td>
             </tr>
             <tr>
