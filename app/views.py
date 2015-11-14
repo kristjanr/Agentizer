@@ -23,8 +23,8 @@ def send_sms(request):
         text='A short Tour description. Accept the Tour: https://intense-tor-6246.herokuapp.com/app/respond',
         to='+37253498963',
     )
-    r = requests.post('https://api2.messente.com/send_sms/', data=post_body)
-    logging.warning('post response: %s', r)
+    r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
+    logging.warning('post response: %s', r.content)
     return render(request, 'app/sms_sent.html')
 
 def respond(request):
