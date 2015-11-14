@@ -24,7 +24,7 @@ def send_sms(request):
         to='+37253498963',
     )
     r = requests.post('https://api2.messente.com/send_sms/', data=post_body)
-    logging.warning('post response: ', r)
+    logging.warning('post response: %s', r)
     return render(request, 'app/sms_sent.html')
 
 def respond(request):
