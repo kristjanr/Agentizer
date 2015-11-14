@@ -1,11 +1,12 @@
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
+from django.conf.urls import patterns, url
+
+from app import views
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'AgentOrganizer.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+   url(r'^$', views.index, name='index'),
+   url(r'^guides', views.guides, name='guides'),
+   url(r'^send_sms', views.send_sms, name='send_sms'),
+   url(r'^respond', views.respond, name='respond'),
+   url(r'^accept', views.accepted, name='accepted'),
 
-    url(r'^app/', include('app.urls')),
-    url(r'^admin/', include(admin.site.urls)),
 )

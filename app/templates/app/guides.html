@@ -3,31 +3,38 @@
     <h2>Please choose guides to send SMS </h2>
     <form action="send_sms" method="post">
         {% csrf_token %}
-        <table border="1" style="width:100%"><tr>
-            <td>  <input type="checkbox" name="vehicle" value="Bike">Jill</td>
-            <td>Smith</td>
-            <td>50xxxxxx</td>
-            <td>jill@gmail.com</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="vehicle" value="Bike">Eve</td>
-            <td>Jackson</td>
-            <td>94xxxxxx</td>
-            <td>eve@gmail.com</td>
-          </tr>
-           <tr>
-            <td><input type="checkbox" name="vehicle" value="Bike">Bill</td>
-            <td>Smith</td>
-            <td>50xxxxxx</td>
-            <td>bill@gmail.com</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="vehicle" value="Bike">Kuno</td>
-            <td>Jackson</td>
-            <td>56xxxxxx</td>
-            <td>kuno@gmail.com</td>
-          </tr>
+        <table border="1" style="width:100%">
+            <tr>
+                <td><input type="checkbox" name="vehicle" value="Bike">Jill</td>
+                <td>Smith</td>
+                <td>50xxxxxx</td>
+                <td>jill@gmail.com</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="vehicle" value="Bike">Eve</td>
+                <td>Jackson</td>
+                <td>94xxxxxx</td>
+                <td>eve@gmail.com</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="vehicle" value="Bike">Bill</td>
+                <td>Smith</td>
+                <td>50xxxxxx</td>
+                <td>bill@gmail.com</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="vehicle" value="Bike">Kuno</td>
+                <td>Jackson</td>
+                <td>56xxxxxx</td>
+                <td>kuno@gmail.com</td>
+            </tr>
         </table>
-          <input type="submit" value="Send SMS">
+        <input type="submit" value="Send SMS">
     </form>
+    <br>
+    <p><b>Tour info:</b></p>
+    <p>[full content here!]</p>
+    <p><b>Sms content:</b></p>
+    <p>Garage48 Tours job offer on 15.11.2015 at 10:00-13:00.</p>
+    <p>Please confirm here: agentizer.com/respond/[unique id]</p>
 {% endblock %}
