@@ -5,17 +5,26 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/png" href="{% static 'app/images/favicon.ico' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}" />
-    <script src="{% static 'app/js/jquery-1.11.3.min.js' %}"></script>
-    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX"
+          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}"/>
+
     <title>{% block title %}Agentizer{% endblock %}</title>
     {% block extrahead %}{% endblock %}
 </head>
 <body>
 <div align="right">Logged in user: Garage48 Tours</div>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
 </body>
 </html>
