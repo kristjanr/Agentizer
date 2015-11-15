@@ -20,7 +20,7 @@ def send_sms(request):
     post_body = dict(
         username='f35583f5f9fcd7a8a13f36a10afca6aa',
         password='ea2254154190fab7a6a33c3ec79a21f0',
-        text='Garage48 Tours job offer on 15.11.2015 at 10:00-13:00. Please confirm here: http://www.agentizer.com/respond/f43wrf23r',
+        text='Garage48 Tours job offer on 15.11.2015 at 10:00-13:00. Please confirm here: http://www.agentizer.com/respond?user_id=246234',
         to='+37253498963',
     )
     r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
