@@ -33,13 +33,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
-    <style xmlns="http://www.w3.org/1999/html">
-        body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-        }
-    </style>
-
     {% block extrahead %}{% endblock %}
 </head>
 <body>
@@ -77,9 +70,7 @@
     <!-- /.container -->
 </nav>
 
-<div class="container">
 {% block content %}
 {% endblock %}
-</div>
 </body>
 </html>
