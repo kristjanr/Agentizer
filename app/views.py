@@ -8,6 +8,10 @@ def index(request):
     return render(request, 'app/index.html')
 
 
+def tour(request):
+    return render(request, 'app/tour.html')
+
+
 def guides(request):
     return render(request, 'app/guides.html')
 
