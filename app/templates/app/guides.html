@@ -11,6 +11,10 @@
 {% block content %}
     <div class="container">
 
+        <div class="col-xs-12">
+            <div style="float: right">Logged in as: Garage48 Tours</div>
+        </div>
+
         <h2>Please choose guides to send SMS </h2>
 
         <form action="send_sms" method="post">
@@ -18,30 +22,30 @@
             <table class="table table-striped">
                 <tr>
                     <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
-                                                              class="checkbox-inline" checked="checked">Jill</label>
+                                                              class="checkbox-inline">Jill</label>
                     </td>
                     <td>Smith</td>
-                    <td>50xxxxxx</td>
+                    <td>50555555</td>
                     <td>jill@gmail.com</td>
                 </tr>
                 <tr>
                     <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
                                                               class="checkbox-inline">Eve</label></td>
                     <td>Jackson</td>
-                    <td>94xxxxxx</td>
+                    <td>94555555</td>
                     <td>eve@gmail.com</td>
                 </tr>
                 <tr>
                     <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
                                                               class="checkbox-inline">Kuno</label></td>
                     <td>Jackson</td>
-                    <td>56xxxxxx</td>
+                    <td>56555555</td>
                     <td>kuno@gmail.com</td>
                 <tr>
                     <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
                                                               class="checkbox-inline">Bill</label></td>
                     <td>Smith</td>
-                    <td>50xxxxxx</td>
+                    <td>50555555</td>
                     <td>bill@gmail.com</td>
                 </tr>
             </table>
@@ -116,7 +120,7 @@
             </div>
             <div class="col-md-6">
                 <p><b>SMS which will be sent to selected tour guides:</b></p>
-                <pre>Garage48 Tours job offer on 15.11.2015 at 10:00-13:00. Please confirm here: http://www.agentizer.com/respond?user_id=246234</pre>
+                <pre>{{ sms_text }}</pre>
             </div>
         </div>
 

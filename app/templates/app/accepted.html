@@ -1,23 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<p>You have accepted the tour!</p>
-<br>
-<div>
-    <p><b>Tour info:</b></p>
-    Ref number:15112015<br>
-    Group name: Garage48<br>
-    Language: english<br>
-    Date: 20-11-2015<br>
-    Time from: 10:00 to: 13:00<br>
-    Starting point: Hotel<br>
-    Ending point: Town Hall square<br>
-    Tour description: Walking tour in Tallinn old town<br>
-    Travel agent: Garage48 Tours<br>
-</div>
-</body>
-</html>
+{% extends "app/base.html" %}
+{% block extrahead %}
+    <style xmlns="http://www.w3.org/1999/html">
+        body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Page Content -->
+    <div class="container col-xs-12">
+        <h2>You have accepted the tour!</h2>
+        <div id="content">
+            <h2>Tour Details </h2>
+
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Ref nr</label>15112015
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Group name</label>Garage48
+            </div>
+            <div class="form-group">
+                 <label for="inputEmail" class="control-label col-xs-6">Group size</label>110
+             </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Language</label>English
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Date</label>20-11-2015
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Time from</label>10:00
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Time to</label>13:00
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Starting point</label>Hotel
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Ending point</label>Town Hall square
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Tour description</label>Walking tour in Tallinn old town
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Travel agent</label>Garage48 Tours
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Travel agent phone number</label>555 1234 0000
+            </div>
+            <br>
+
+            <div class="col-xs-12">
+            </div>
+        </div>
+    </div>
+{% endblock %}

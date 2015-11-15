@@ -12,7 +12,11 @@
 {% block content %}
 
     {% csrf_token %}
-<div class="container">
+    <div class="container">
+
+        <div class="col-xs-12">
+            <div style="float: right">Logged in as: Garage48 Tours</div>
+        </div>
 
         <div id="content">
             <h2>Please fill out tour information </h2>
@@ -28,81 +32,63 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label for="inputEmail" class="control-label col-xs-2">Group size</label>
+                    <label for="inputEmail" class="control-label col-xs-2">Group size</label>
 
-                        <div class="col-xs-10">
-                            <input type="number" class="form-control" placeholder="group size" value="110">
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="inputEmail" class="control-label col-xs-2">Language</label>
-
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" placeholder="language" value="English">
-                            </div>
+                    <div class="col-xs-10">
+                        <input type="number" class="form-control" placeholder="group size" value="110">
+                    </div>
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail" class="control-label col-xs-2">Date</label>
+                    <label for="inputEmail" class="control-label col-xs-2">Language</label>
 
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" placeholder="date" value="20-11-2015">
-                            </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="language" value="English">
+                    </div>
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail" class="control-label col-xs-2">Start time</label>
+                    <label for="inputEmail" class="control-label col-xs-2">Date</label>
 
-                            <div class="col-xs-10">
-                                <input type="time" class="form-control" placeholder="start time" value="10:00">
-                            </div>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="date" value="20-11-2015">
+                    </div>
 
 
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail" class="control-label col-xs-2">End time</label>
+                    <label for="inputEmail" class="control-label col-xs-2">Start time</label>
 
-                            <div class="col-xs-10">
-                                <input type="time" class="form-control" placeholder="end time" value="13:00">
-                            </div>
+                    <div class="col-xs-10">
+                        <input type="time" class="form-control" placeholder="start time" value="10:00">
+                    </div>
 
-                        </div>
+                    <label for="inputEmail" class="control-label col-xs-2">End time</label>
 
-                        <div class="form-group">
-                            <label for="inputEmail" class="control-label col-xs-2">Meeting point</label>
+                    <div class="col-xs-10">
+                        <input type="time" class="form-control" placeholder="end time" value="13:00">
+                    </div>
 
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" placeholder="meeting point" value="Tervis SPA">
-                            </div>
+                    <label for="inputEmail" class="control-label col-xs-2">Meeting point</label>
 
-                            <div class="form-group">
-                                <label for="inputEmail" class="control-label col-xs-2">Ending point</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="meeting point" value="Tervis SPA">
+                    </div>
 
-                                <div class="col-xs-10">
-                                    <input type="text" class="form-control" placeholder="meeting point" value="Town Hall square">
-                                </div>
+                    <label for="inputEmail" class="control-label col-xs-2">Ending point</label>
 
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail" class="control-label col-xs-2">Tour description:</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="meeting point" value="Town Hall square">
+                    </div>
 
-                                <div class="col-xs-10">
-                                    <input type="text" class="form-control" placeholder="tour description" value="Walking tour in Tallinn old town"><br><br>
-                                </div>
-                            </div>
+                    <label for="inputEmail" class="control-label col-xs-2">Tour description:</label>
 
-                        </div>
-                        <input type="submit" class="btn btn-success" value="Submit info">
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="tour description" value="Walking tour in Tallinn old town"><br><br>
                     </div>
                 </div>
+
+                <input type="submit" class="btn btn-success" value="Submit info">
             </form>
 
         </div>
         <!-- /.row -->
 
-</div>
+    </div>
 {% endblock %}

@@ -13,13 +13,16 @@
     <div class="container col-xs-12">
 
         <div id="content">
-            <h2>Job Details </h2>
+            <h2>Tour Details </h2>
 
             <div class="form-group">
                 <label for="inputEmail" class="control-label col-xs-6">Ref nr</label>15112015
             </div>
             <div class="form-group">
                 <label for="inputEmail" class="control-label col-xs-6">Group name</label>Garage48
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label col-xs-6">Group size</label>110
             </div>
             <div class="form-group">
                 <label for="inputEmail" class="control-label col-xs-6">Language</label>English
@@ -48,12 +51,17 @@
             <div class="form-group">
                 <label for="inputEmail" class="control-label col-xs-6">Travel agent phone number</label>555 1234 0000
             </div>
-            <form action="accept" method="post">
-                {% csrf_token %}
-                <input type="submit" class="col-xs-5 btn btn-success" value="yes" name="yes">
-                <input type="submit" class="col-xs-5 btn btn-danger" value="no" name="no">
+            <br>
 
-            </form>
+            <div class="col-xs-12">
+                <form action="accept" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-success col-xs-6" value="yes" name="yes">
+
+                    <div class="col-xs-1"></div>
+                    <input type="submit" class="btn btn-danger col-xs-4" value="no" name="no">
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}
