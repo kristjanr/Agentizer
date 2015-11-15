@@ -1,30 +1,107 @@
 {% extends "app/base.html" %}
+{% block extrahead %}
+    <style xmlns="http://www.w3.org/1999/html">
+        body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     {% csrf_token %}
-    <h2>Please fill out tour information </h2>
-    <form action="guides" method="post">
-        {% csrf_token %}
-        <label>Ref number:</label><input type="text" name="refnumber" value="15112015"><br>
-        <label>Group name:</label><input type="text"  size="40" name="group_name" value="Garage48"><br>
-        <label>Language:</label>
-        <select>
-            <option value="english">english</option>
-            <option value="spanish">spanish</option>
-            <option value="russian">russian</option>
-            <option value="finnish">finnish</option>
-            <option value="-">---</option>
-        </select>
-        <br>
-        <label>Date:</label><input type="text" name="date" value="20-11-2015">
-        <br>
-        <label>Time from:</label><input type="time" name="time_from" value="10:00">
-        <label>to:</label><input type="time" name="time_to" value="13:00">
-        <br>
-        <label>Starting point:</label><input type="text" size="40" name="starting_point" value="Hotel">
-        <br>
-        <label>Ending point:</label><input type="text" name="ending_point" value="Town Hall square">
-        <br>
-        <label>Tour description:</label><input type="text" size="100" name="optional_description" value="Walking tour in Tallinn old town"><br>
-        <input type="submit" value="Submit info">
-    </form>
+    <div class="container">
+
+        <div id="content">
+            <h2>Please fill out tour information </h2>
+
+            <form action="guides" method="post"><br>
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="inputEmail" class="control-label col-xs-2">Ref number</label>
+
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" placeholder="ref number" value="15112015">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="control-label col-xs-2">Group size</label>
+
+                        <div class="col-xs-10">
+                            <input type="number" class="form-control" placeholder="group size" value="110">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label col-xs-2">Language</label>
+
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" placeholder="language" value="English">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label col-xs-2">Date</label>
+
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" placeholder="date" value="20-11-2015">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label col-xs-2">Start time</label>
+
+                            <div class="col-xs-10">
+                                <input type="time" class="form-control" placeholder="start time" value="10:00">
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label col-xs-2">End time</label>
+
+                            <div class="col-xs-10">
+                                <input type="time" class="form-control" placeholder="end time" value="13:00">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="control-label col-xs-2">Meeting point</label>
+
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" placeholder="meeting point" value="Hotel">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail" class="control-label col-xs-2">Ending point</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="meeting point" value="Town Hall square">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="control-label col-xs-2">Tour description:</label>
+
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" placeholder="tour description" value="Walking tour in Tallinn old town"><br><br>
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="submit" class="btn btn-success" value="Submit info">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+
 {% endblock %}
