@@ -18,12 +18,13 @@ def guides(request):
 
 
 def send_sms(request):
-    post_body = dict(
-        username='f35583f5f9fcd7a8a13f36a10afca6aa',
-        password='ea2254154190fab7a6a33c3ec79a21f0',
-        text=sms_text,
-        to='+37253498963',
-    )
+    post_body = {
+        'username': 'f35583f5f9fcd7a8a13f36a10afca6aa',
+        'password': 'ea2254154190fab7a6a33c3ec79a21f0',
+        'text': sms_text,
+        'from': 'Agentizer',
+        'to': '+37253498963',
+    }
     r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
     logging.warning('post response: %s', r.content)
     return render(request, 'app/sms_sent.html')
