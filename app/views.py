@@ -3,7 +3,7 @@ import logging
 from django.shortcuts import render
 import requests
 
-sms_text = 'Garage48 Tours job offer on 20.11.2015 at 10:00-13:00.\nPlease confirm here: http://www.agentizer.com/respond?uid=[uid]'
+sms_text = 'Garage48 Tours job offer on 20.11.2015 at 10:00-13:00.\nPlease confirm here: http://agentizer.com/respond?uid=[uid]'
 
 def index(request):
     return render(request, 'app/index.html')
@@ -23,7 +23,7 @@ def send_sms(request):
         'password': 'ea2254154190fab7a6a33c3ec79a21f0',
         'text': sms_text.replace('[uid]', 'suchawesomemuchwow'),
         'from': 'Agentizer',
-        'to': '+37253498963',
+        'to': '+3725216544',
     }
     r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
     logging.warning('post response: %s', r.content)
