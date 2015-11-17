@@ -5,6 +5,7 @@ import requests
 
 sms_text = 'Garage48 Tours job offer on 20.11.2015 at 10:00-13:00.\nPlease confirm here: http://agentizer.com/respond?uid=[uid]'
 
+
 def index(request):
     return render(request, 'app/index.html')
 

@@ -1,13 +1,7 @@
-from django.conf.urls import patterns, url
-
-from app import views
+from django.conf.urls import patterns, url, include
+from django.contrib import admin
 
 urlpatterns = patterns('',
-   url(r'^$', views.index, name='index'),
-   url(r'^tour', views.tour, name='tour'),
-   url(r'^guides', views.guides, name='guides'),
-   url(r'^send_sms', views.send_sms, name='send_sms'),
-   url(r'^respond', views.respond, name='respond'),
-   url(r'^accept', views.accepted, name='accepted'),
-
+   url(r'^', include('app.urls')),
+   url(r'^admin/', include(admin.site.urls)),
 )

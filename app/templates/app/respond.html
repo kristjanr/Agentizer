@@ -48,7 +48,7 @@
             <br>
 
             <div class="col-xs-12">
-                <form action="accept" method="post">
+                <form action="{% url 'accepted' %}" method="post">
                     {% csrf_token %}
                     <input type="submit" class="btn btn-success col-xs-6" value="yes" name="yes">
 

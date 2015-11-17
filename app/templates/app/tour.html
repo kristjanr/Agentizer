@@ -21,7 +21,7 @@
         <div id="content">
             <h2>Please fill out tour information </h2>
 
-            <form action="guides" method="post"><br>
+            <form action="{% url 'guides' %}" method="post"><br>
                 {% csrf_token %}
 
                 <div class="form-group" >

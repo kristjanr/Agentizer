@@ -17,7 +17,7 @@
 
         <h2>Please choose guides to send SMS </h2>
 
-        <form action="send_sms" method="post">
+        <form action="{% url 'send_sms' %}" method="post">
             {% csrf_token %}
             <table class="table table-striped">
                 <tr>
