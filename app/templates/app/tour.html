@@ -27,60 +27,54 @@
                     <label for="inputEmail" class="control-label col-xs-2">Ref number</label>
 
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" placeholder="ref number" value="15112015">
+                        <input id="ref_number" type="text" name="ref_number" value="{{ ref_number }}" class="form-control" placeholder="ref number">
                     </div>
 
 
                     <label for="inputEmail" class="control-label col-xs-2">Group size</label>
 
                     <div class="col-xs-10">
-                        <input type="number" class="form-control" placeholder="group size" value="110">
+                        <input id="group_size" type="number" name="group_size" value="{{ group_size }}" class="form-control" placeholder="group size">
                     </div>
 
 
                     <label for="inputEmail" class="control-label col-xs-2">Language</label>
 
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" placeholder="language" value="English">
-                    </div>
-
-
-                    <label for="inputEmail" class="control-label col-xs-2">Date</label>
-
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" placeholder="date" value="20-11-2015">
+                        <input id="language" type="text" name="language" value="{{ language }}" class="form-control" placeholder="group language">
                     </div>
 
 
                     <label for="inputEmail" class="control-label col-xs-2">Start time</label>
 
                     <div class="col-xs-10">
-                        <input type="time" class="form-control" placeholder="start time" value="10:00">
+                        <input id="start_time" type="datetime-local" name="start_time" value="{{ start_time }}" class="form-control" placeholder="start time">
                     </div>
 
                     <label for="inputEmail" class="control-label col-xs-2">End time</label>
 
                     <div class="col-xs-10">
-                        <input type="time" class="form-control" placeholder="end time" value="13:00">
+                        <input id="end_time" type="datetime-local" name="end_time" value="{{ end_time }}" class="form-control" placeholder="end time">
                     </div>
 
                     <label for="inputEmail" class="control-label col-xs-2">Meeting point</label>
 
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" placeholder="meeting point" value="Tervis SPA">
+                        <input id="meeting_point" type="text" name="meeting_point" value="{{ meeting_point }}" class="form-control" placeholder="meeting point">
                     </div>
 
                     <label for="inputEmail" class="control-label col-xs-2">Ending point</label>
 
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" placeholder="meeting point" value="Town Hall square">
+                        <input id="ending_point" type="text" name="ending_point" value="{{ ending_point }}" class="form-control" placeholder="ending point">
                     </div>
 
                     <label for="inputEmail" class="control-label col-xs-2">Tour description:</label>
 
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" placeholder="tour description" value="Walking tour in Tallinn old town"><br><br>
-                    </div>
+                        <input id="description" type="text" name="description" value="{{ description }}" class="form-control" placeholder="tour description">
+
+                    <br><br>
                 </div>
 
                 <input type="submit" class="btn btn-success" value="Submit info">

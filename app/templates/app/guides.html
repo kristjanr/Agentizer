@@ -6,8 +6,8 @@
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
         body {
-            padding-top: 70px;
-            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
         }
     </style>
 {% endblock %}
@@ -17,107 +17,42 @@
         <h2>Please choose guides to send SMS </h2>
 
         <form action="{% url 'send_sms' %}" method="post">
+            {% if tour %}
+                <input type="hidden" name="tour_id" value="{{ tour.id }}">
+            {% endif %}
+
             {% csrf_token %}
             <table class="table table-striped">
-                <tr>
-                    <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
-                                                              class="checkbox-inline">Jill</label>
-                    </td>
-                    <td>Smith</td>
-                    <td>50555555</td>
-                    <td>jill@gmail.com</td>
-                </tr>
-                <tr>
-                    <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
-                                                              class="checkbox-inline">Eve</label></td>
-                    <td>Jackson</td>
-                    <td>94555555</td>
-                    <td>eve@gmail.com</td>
-                </tr>
-                <tr>
-                    <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
-                                                              class="checkbox-inline">Kuno</label></td>
-                    <td>Jackson</td>
-                    <td>56555555</td>
-                    <td>kuno@gmail.com</td>
-                <tr>
-                    <td><label class="checkbox-inline"><input type="checkbox" name="vehicle" value="Bike"
-                                                              class="checkbox-inline">Bill</label></td>
-                    <td>Smith</td>
-                    <td>50555555</td>
-                    <td>bill@gmail.com</td>
-                </tr>
+                {% if guides_list %}
+                    {% for guide in guides_list %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="guide_ids" value="{{ guide.id }}" class="checkbox-inline">
+                            </td>
+                            <td>{{ guide.name }}</td>
+                            <td>{{ guide.phone_number }}</td>
+                            <td>{{ guide.email }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             </table>
             <input type="submit" class="btn btn-primary" value="Send SMS to selected">
-            <input type="submit" class="btn btn-primary" value="Send SMS to all">
         </form>
         <br>
 
         <div class="row">
-            <div class="col-md-6 form-horizontal">
+            {% if tour %}
 
-                    <p><b>Tour info:</b></p>
+                <div class="col-xs-6 form-horizontal">
 
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Ref number</label>
+                    <h2>Tour Details </h2>
 
-                        <div class="col-sm-8">
-                            <p class="form-control-static">15112015</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Group name</label>
+                    {% include "app/tour_info.html"%}
 
-                        <div class="col-sm-8">
-                            <p class="form-control-static">Garage48</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Language</label>
+                </div>
+            {% endif %}
 
-                        <div class="col-sm-8">
-                            <p class="form-control-static">English</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Date</label>
-
-                        <div class="col-sm-8">
-                            <p class="form-control-static">20-11-2015</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Time</label>
-
-                        <div class="col-sm-8">
-                            <p class="form-control-static">10:00-13:00</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Starting point</label>
-
-                        <div class="col-sm-8">
-                            <p class="form-control-static">Tervis SPA</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Ending point</label>
-
-                        <div class="col-sm-8">
-                            <p class="form-control-static">Town Hall square</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 control-label">Tour description</label>
-
-                        <div class="col-sm-8">
-                            <p class="form-control-static">Walking tour in Pärnu Old Town</p>
-                        </div>
-                    </div>
-
-
-            </div>
-            <div class="col-md-6">
+            <div class="col-xs-6">
                 <p><b>SMS which will be sent to selected tour guides:</b></p>
                 <pre>{{ sms_text }}</pre>
             </div>
