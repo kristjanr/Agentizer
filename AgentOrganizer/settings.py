@@ -142,3 +142,7 @@ EMAIL_USE_SSL = True
 DEFAULT_FROM_EMAIL = 'Agentizer <no-reply-@agentizer.com>'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+
+MIGRATION_MODULES = {
+    'sites': 'AgentOrganizer.migrations.sites',
+}
