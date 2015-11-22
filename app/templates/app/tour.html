@@ -1,5 +1,8 @@
-{% extends "app/base.html" %}
-
+{% extends "app/../site_base.html" %}
+{% load account_tags %}
+{% block head_title %}
+    Tour
+{% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
         body {
@@ -9,14 +12,10 @@
     </style>
 {% endblock %}
 
-{% block content %}
+{% block body %}
 
     {% csrf_token %}
     <div class="container">
-
-        <div class="col-xs-12">
-            <div style="float: right">Logged in as: Garage48 Tours</div>
-        </div>
 
         <div id="content">
             <h2>Please fill out tour information </h2>

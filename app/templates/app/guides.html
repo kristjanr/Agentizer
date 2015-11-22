@@ -1,4 +1,8 @@
-{% extends "app/base.html" %}
+{% extends "app/../site_base.html" %}
+{% block head_title %}
+    Guides
+{% endblock %}
+
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
         body {
@@ -8,13 +12,8 @@
     </style>
 {% endblock %}
 
-{% block content %}
+{% block body %}
     <div class="container">
-
-        <div class="col-xs-12">
-            <div style="float: right">Logged in as: Garage48 Tours</div>
-        </div>
-
         <h2>Please choose guides to send SMS </h2>
 
         <form action="{% url 'send_sms' %}" method="post">

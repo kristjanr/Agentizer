@@ -1,4 +1,7 @@
-{% extends "app/base.html" %}
+{% extends "app/../site_base.html" %}
+{% block head_title %}
+    SMS sent
+{% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
         body {
@@ -7,7 +10,7 @@
         }
     </style>
 {% endblock %}
-{% block content %}
+{% block body %}
     <div class="container">
         <h2>The messages are sent!</h2>
     </div>

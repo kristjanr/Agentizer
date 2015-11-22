@@ -1,1 +1,72 @@
 {% extends "theme_bootstrap/base.html" %}
+{% load staticfiles %}
+{% load account_tags %}
+
+{% block extra_head_base %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'app/images/favicon.ico' %}"/>
+    {% block styles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+              integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+        <!-- Custom Fonts -->
+        <link href="{% static 'app/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}"/>
+    {% endblock %}
+    {% block extrahead %}{% endblock %}
+{% endblock %}
+
+{% block body_base %}
+    <section id="content_body">
+        <div class="container-fluid">
+            {% include "_messages.html" %}
+            {% block body %}
+            {% endblock %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block nav %}
+    <ul class="nav navbar-nav nav-right">
+        <li>
+            <a href="#weoffer">We offer</a>
+        </li>
+        <li>
+            <a href="mailto:hello@agentizer.com">Contact</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block footer %}
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-inline">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li class="footer-menu-divider">&sdot;</li>
+                <li>
+                    <a href="#weoffer">We Offer</a>
+                </li>
+                <li class="footer-menu-divider">&sdot;</li>
+                <li>
+                    <a href="mailto:hello@agentizer.com">Contact</a>
+                </li>
+            </ul>
+            <p class="copyright text-muted small">Copyright &copy; Agentizer 2015. All Rights Reserved</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+            crossorigin="anonymous"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+{% endblock %}
