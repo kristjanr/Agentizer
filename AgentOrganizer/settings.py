@@ -99,10 +99,10 @@ DATABASES['default'] = dj_database_url.config()
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'Europe/Tallinn'
+# TIME_ZONE = 'Europe/Tallinn'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 
 # Enable Connection Pooling (if desired)
