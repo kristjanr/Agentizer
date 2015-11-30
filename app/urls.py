@@ -4,6 +4,8 @@ from app import views
 
 urlpatterns = patterns('',
    url(r'^$', views.index, name='home'),
+   url(r'^account/signup/$', views.SignupView.as_view(), name="account_signup"),
+   url(r'^account/', include("account.urls")),
    url(r'^tour$', views.create_tour, name='tour'),
    url(r'^guides', views.guides, name='guides'),
    url(r'^send_sms', views.send_sms, name='send_sms'),

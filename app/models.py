@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class Guide(models.Model):
@@ -25,3 +27,14 @@ class GuideTour(models.Model):
     tour = models.ForeignKey(Tour)
     seen = models.BooleanField(default=False)
     answer = models.NullBooleanField(null=True)
+
+
+class Profile(models.Model):
+    company_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=100)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", verbose_name=_("user"))
+
+
+class UserTour(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    tour = models.ForeignKey(Tour)

@@ -7,12 +7,12 @@
     <div class="container col-xs-12">
         {% if tour %}
 
-            <h2>{{ guide.name }}You have accepted the tour!</h2>
+            <h2>{{ guide.name }}, you have accepted the tour!</h2>
 
 
             <h2>Tour Details </h2>
 
-            {% include "app/tour_info.html" %}
+            {% include "app/tour_details_with_contact.html" %}
 
             <h2>These details have been sent to your e-mail: {{ guide.email }}</h2>
 

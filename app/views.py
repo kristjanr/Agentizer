@@ -1,7 +1,8 @@
 from copy import copy
 # import the logging library
 import logging
-
+import account.views
+import app.forms
 # Get an instance of a logger
 import requests
 
@@ -9,13 +10,13 @@ logger = logging.getLogger(__name__)
 from hashlib import md5
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template import Context
 from django.template.loader import get_template
 from django.utils.dateparse import parse_datetime
 from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
 
-from app.models import Guide, GuideTour, Tour
+from app.models import Guide, GuideTour, Tour, Profile, UserTour
 from django.core.mail import send_mail
 
 sms_text_template = '%s offers a job: from %s to %s. Please answer: http://agentizer.com/respond?uid=[uid]'
@@ -34,8 +35,8 @@ def index(request):
 
 
 def send_emails(context):
-    tour_info = get_template('app/tour_info.html').render(Context(context))
-    send_mail('Tour details', tour_info, DEFAULT_FROM_EMAIL, [context['guide'].email], html_message=tour_info)
+    tour_info = get_template('app/tour_details_email.html').render(Context(context))
+    send_mail('Tour details', tour_info, DEFAULT_FROM_EMAIL, [context['guide'].email, context['user'].email], html_message=tour_info)
 
 
 @login_required
@@ -62,12 +63,16 @@ def guides(request):
     tour_dict['start_time'] = parse_datetime(tour_dict['start_time'])
     tour_dict['end_time'] = parse_datetime(tour_dict['end_time'])
     tour = Tour.objects.create(**tour_dict)
+    user_tour = UserTour.objects.create(user=request.user, tour=tour)
+    user_tour.save()
 
-    sms_text = create_sms_text(request.user.username.capitalize(), tour)
+    sms_text = create_sms_text(request.user.profile.company_name, tour)
 
     guides_list = Guide.objects.order_by('name')
 
-    context = dict(sms_text=sms_text, guides_list=guides_list, tour=tour, tour_id=tour.id)
+    user_who_created_tour = tour.usertour_set.all()[0].user
+    context = dict(sms_text=sms_text, guides_list=guides_list, tour=tour, tour_id=tour.id, user=user_who_created_tour
+                   )
     return render(request, 'app/guides.html', context=context)
 
 
@@ -82,7 +87,7 @@ def send_sms(request):
         if GuideTour.objects.filter(uid=uid):
             continue
         guide_tour = GuideTour.objects.create(uid=uid, guide=guide, tour=tour)
-        sms_text = create_sms_text(request.user.username.capitalize(), tour)
+        sms_text = create_sms_text(request.user.profile.company_name, tour)
         sms_text = sms_text.replace('[uid]', guide_tour.uid)
 
         post_body = {
@@ -121,7 +126,8 @@ def answer(request):
 
     guide_answer = True if request.POST['answer'] == 'yes' else False
 
-    context = dict(tour=guide_tour.tour, guide=guide_tour.guide)
+    user_who_created_tour = guide_tour.tour.usertour_set.all()[0].user
+    context = dict(tour=guide_tour.tour, guide=guide_tour.guide, user=user_who_created_tour)
 
     # do not let the guides to change their answers
     if guide_tour.answer is not None:
@@ -146,4 +152,17 @@ def tour_details(request):
 
     context = dict(tour=guide_tour.tour)
 
-    return render(request, 'app/tour_info.html', context=context)
+    return render(request, 'app/tour_details.html', context=context)
+
+
+class SignupView(account.views.SignupView):
+    form_class = app.forms.SignupForm
+
+    def after_signup(self, form):
+        self.create_profile(form)
+        super(SignupView, self).after_signup(form)
+
+    def create_profile(self, form):
+        profile = Profile.objects.create(user=self.created_user)
+        profile.company_name = form.cleaned_data["company_name"]
+        profile.save()
