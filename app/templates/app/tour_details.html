@@ -32,14 +32,14 @@
         <label class="col-sm-4 control-label">Start Time</label>
 
         <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.start_time }}</p>
+            <p class="form-control-static">{{ tour.start_time | date }} {{ tour.start_time | time }}</p>
         </div>
     </div>
     <div class="row">
         <label class="col-sm-4 control-label">End Time</label>
 
         <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.end_time }}</p>
+            <p class="form-control-static">{{ tour.end_time | date}} {{ tour.end_time | time}}</p>
         </div>
     </div>
     <div class="row">
@@ -63,6 +63,7 @@
             <p class="form-control-static">{{ tour.description }}</p>
         </div>
     </div>
-
+    {% block extradetails %}
+    {% endblock %}
 
 </div>

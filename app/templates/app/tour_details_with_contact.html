@@ -1,68 +1,5 @@
-<div class="col-xs-12 form-horizontal">
-
-    <div class="row">
-        <label class="col-sm-4 control-label">Ref number</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.ref_number }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Group size</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.group_size }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Group name</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.group_name }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Language</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.language }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Start Time</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.start_time }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">End Time</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.end_time }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Meeting point</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.meeting_point }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Ending point</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.ending_point }}</p>
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-sm-4 control-label">Tour description</label>
-
-        <div class="col-sm-8">
-            <p class="form-control-static">{{ tour.description }}</p>
-        </div>
-    </div>
+{% extends "app/tour_details.html" %}
+{% block extradetails %}
     <div class="row">
         <label class="col-sm-4 control-label">Hiring company</label>
 
@@ -91,4 +28,4 @@
             <p class="form-control-static">{{ user.profile.phone_number }}</p>
         </div>
     </div>
-</div>
+{% endblock %}
