@@ -28,20 +28,4 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(null=True, to=settings.AUTH_USER_MODEL),
         ),
         migrations.RunPython(set_users_to_tours),
-        migrations.RemoveField(
-            model_name='usertour',
-            name='tour',
-        ),
-        migrations.RemoveField(
-            model_name='usertour',
-            name='user',
-        ),
-        migrations.AlterField(
-            model_name='tour',
-            name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.DeleteModel(
-            name='UserTour',
-        ),
     ]
