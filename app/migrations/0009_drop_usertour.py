@@ -8,7 +8,7 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0007_drop_usertour'),
+        ('app', '0008_set_users'),
     ]
 
     operations = [
