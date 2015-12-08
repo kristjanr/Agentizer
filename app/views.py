@@ -1,16 +1,16 @@
-from copy import copy
 # import the logging library
 import logging
+
 import account.views
-import app.forms
-# Get an instance of a logger
 import requests
+
+from app.forms import TourForm, SignupForm
 
 logger = logging.getLogger(__name__)
 from hashlib import md5
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template import Context
 from django.template.loader import get_template
 from django.utils.dateparse import parse_datetime
@@ -35,42 +35,90 @@ def index(request):
 
 
 def send_emails(context):
-    tour_info = get_template('app/tour_details_email.html').render(Context(context))
+    tour_info = get_template('app/tour_content_email.html').render(Context(context))
     send_mail('Tour details', tour_info, DEFAULT_FROM_EMAIL, [context['guide'].email, context['user'].email], html_message=tour_info)
 
 
 @login_required
-def create_tour(request):
+def show_add_tour(request):
     tour = dict(
         ending_point='Town Hall Square',
         end_time='2015-11-20T13:00',
-        description='Walking tour in Tallinn old town',
+        description='Walking add_tour in Tallinn old town',
         group_size=110,
         language='English',
         start_time='2015-11-20T10:00',
         ref_number=15112015,
         meeting_point='Tervis SPA'
     )
-
-    return render(request, 'app/tour.html', context=tour)
+    return render(request, 'app/add_tour.html', context=tour)
 
 
 @login_required
-def guides(request):
-    tour_dict = copy(request.POST)
-    del tour_dict['csrfmiddlewaretoken']
-    tour_dict = {k: v for k, v in tour_dict.items()}
-    tour_dict['start_time'] = parse_datetime(tour_dict['start_time'])
-    tour_dict['end_time'] = parse_datetime(tour_dict['end_time'])
-    tour_dict['user'] = request.user
-    tour = Tour.objects.create(**tour_dict)
+def tour(request, tour_id=None):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = TourForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            tour_dict = form.cleaned_data
+            tour_dict['user'] = request.user
+            tour_dict['id'] = get_object_or_404(Tour, id=tour_id).id if tour_id else None
+            tour = Tour(**tour_dict)
+            tour.save()
+            if request.POST['submit'] == 'Save':
+                return redirect('tour', tour.id)
+            # redirect to add guides url with form id
+            return redirect('add_guides', tour.id)
+    elif tour_id:
+        tour = get_object_or_404(Tour, id=tour_id)
+        if tour.guidetour_set.all():
+            context = dict(tour=tour)
+            return render(request, 'app/tour_content.html', context=context)
+        form = TourForm(instance=tour)
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        initial = dict(
+            ref_number='15112015',
+            group_size='110',
+            group_name='Some group',
+            language='English',
+            start_time=parse_datetime('2015-11-20T10:00'),
+            end_time=parse_datetime('2015-11-20T13:00'),
+            meeting_point='Tervis SPA',
+            ending_point='Town Hall square',
+            description='Walking tour in Tallinn old town',
+        )
+        form = TourForm(initial=initial)
 
-    sms_text = create_sms_text(request.user.profile.company_name, tour)
+    return render(request, 'app/add_tour.html', {'form': form})
+
+
+def show_tour_details(request):
+    id = request.GET['id']
+    tour = get_object_or_404(Tour, id=id)
+
+    context = dict(tour=tour)
+
+    return render(request, 'app/tour_content.html', context=context)
+
+
+@login_required
+def add_guides(request, tour_id):
+    tour = get_object_or_404(Tour, id=tour_id)
+
+    sms_text = create_sms_text(tour.user.profile.company_name, tour)
 
     guides_list = Guide.objects.order_by('name')
 
-    context = dict(sms_text=sms_text, guides_list=guides_list, tour=tour, tour_id=tour.id, user=tour.user
-                   )
+    context = dict(
+        sms_text=sms_text,
+        guides_list=guides_list,
+        tour=tour,
+        tour_id=tour.id,
+        user=tour.user
+    )
     return render(request, 'app/guides.html', context=context)
 
 
@@ -79,7 +127,11 @@ def send_sms(request):
     tour_id = request.POST.get('tour_id')
     tour = Tour.objects.get(id=int(tour_id))
 
-    for guide_id in request.POST.getlist('guide_ids'):
+    guide_ids = request.POST.getlist('guide_ids')
+    if not guide_ids:
+        return redirect('add_guides')
+
+    for guide_id in guide_ids:
         guide = Guide.objects.get(id=int(guide_id))
         uid = md5_hash(str(tour.id) + '' + str(guide.id))
         if GuideTour.objects.filter(uid=uid):
@@ -126,7 +178,7 @@ def answer(request):
 
     context = dict(tour=guide_tour.tour, guide=guide_tour.guide, user=guide_tour.tour.user)
 
-    # do not let the guides to change their answers
+    # do not let the add_guides to change their answers
     if guide_tour.answer is not None:
         if guide_tour.answer:
             return render(request, 'app/accepted.html', context=context)
@@ -143,17 +195,17 @@ def answer(request):
     return render(request, 'app/accepted.html', context=context)
 
 
-def tour_details(request):
+def show_guide_tour_details(request):
     uid = request.GET['uid']
     guide_tour = get_object_or_404(GuideTour, uid=uid)
 
     context = dict(tour=guide_tour.tour)
 
-    return render(request, 'app/tour_details.html', context=context)
+    return render(request, 'app/tour_content.html', context=context)
 
 
 class SignupView(account.views.SignupView):
-    form_class = app.forms.SignupForm
+    form_class = SignupForm
 
     def after_signup(self, form):
         self.create_profile(form)

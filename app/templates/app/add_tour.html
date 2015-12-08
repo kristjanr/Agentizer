@@ -1,0 +1,53 @@
+{% extends "app/../site_base.html" %}
+{% load account_tags %}
+{% block head_title %}
+    Tour
+{% endblock %}
+{% block extrahead %}
+    <style xmlns="http://www.w3.org/1999/html">
+        body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+    {{ form.media }}
+
+{% endblock %}
+
+{% block body %}
+
+    {% csrf_token %}
+    <div class="container">
+
+        <div id="content">
+            <h2>Please fill out tour information </h2>
+
+            <form method="post"><br>
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    <div class="col-xs-12">
+                        <div class="control-label col-xs-2">
+                            {{ field.label_tag }}
+                        </div>
+                        <div class="col-xs-8">
+                            {{ field }}
+                        </div>
+                        <div class="col-xs-2">
+                            {{ field.errors }}
+                        </div>
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <input type="submit" class="btn btn-primary" value="Save" name="submit">
+                <input type="submit" class="btn btn-success" value="Next" name="submit">
+            </form>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+{% endblock %}

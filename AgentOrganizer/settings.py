@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'pinax_theme_bootstrap',
     'bootstrapform',
     'account',
+    'datetimewidget',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,7 +102,7 @@ DATABASES['default'] = dj_database_url.config()
 LANGUAGE_CODE = 'en-us'
 # TIME_ZONE = 'Europe/Tallinn'
 USE_I18N = True
-USE_L10N = False
+USE_L10N = True
 USE_TZ = False
 TIME_FORMAT = 'H:i'
 
