@@ -19,6 +19,7 @@ class Tour(models.Model):
     meeting_point = models.CharField(max_length=300)
     ending_point = models.CharField(max_length=300)
     description = models.CharField(max_length=500)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
 
 class GuideTour(models.Model):
@@ -33,8 +34,3 @@ class Profile(models.Model):
     company_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", verbose_name=_("user"))
-
-
-class UserTour(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    tour = models.ForeignKey(Tour)
