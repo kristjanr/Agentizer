@@ -8,8 +8,10 @@ from django.conf import settings
 def set_users_to_tours(apps, schema_editor):
     UserTour = apps.get_model('app', 'UserTour')
     for usertour in UserTour.objects.all():
-        usertour.tour.user=usertour.user
+        usertour.tour.user = usertour.user
         usertour.tour.save()
+    Tour = apps.get_model('app', 'Tour')
+    Tour.objects.filter(user=None).all().delete()
 
 
 class Migration(migrations.Migration):

@@ -16,7 +16,7 @@ from django.template.loader import get_template
 from django.utils.dateparse import parse_datetime
 from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
 
-from app.models import Guide, GuideTour, Tour, Profile, UserTour
+from app.models import Guide, GuideTour, Tour, Profile
 from django.core.mail import send_mail
 
 sms_text_template = '%s offers a job: from %s to %s. Please answer: http://agentizer.com/respond?uid=[uid]'
@@ -62,16 +62,14 @@ def guides(request):
     tour_dict = {k: v for k, v in tour_dict.items()}
     tour_dict['start_time'] = parse_datetime(tour_dict['start_time'])
     tour_dict['end_time'] = parse_datetime(tour_dict['end_time'])
+    tour_dict['user'] = request.user
     tour = Tour.objects.create(**tour_dict)
-    user_tour = UserTour.objects.create(user=request.user, tour=tour)
-    user_tour.save()
 
     sms_text = create_sms_text(request.user.profile.company_name, tour)
 
     guides_list = Guide.objects.order_by('name')
 
-    user_who_created_tour = tour.usertour_set.all()[0].user
-    context = dict(sms_text=sms_text, guides_list=guides_list, tour=tour, tour_id=tour.id, user=user_who_created_tour
+    context = dict(sms_text=sms_text, guides_list=guides_list, tour=tour, tour_id=tour.id, user=tour.user
                    )
     return render(request, 'app/guides.html', context=context)
 
@@ -126,8 +124,7 @@ def answer(request):
 
     guide_answer = True if request.POST['answer'] == 'yes' else False
 
-    user_who_created_tour = guide_tour.tour.usertour_set.all()[0].user
-    context = dict(tour=guide_tour.tour, guide=guide_tour.guide, user=user_who_created_tour)
+    context = dict(tour=guide_tour.tour, guide=guide_tour.guide, user=guide_tour.tour.user)
 
     # do not let the guides to change their answers
     if guide_tour.answer is not None:

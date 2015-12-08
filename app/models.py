@@ -19,13 +19,13 @@ class Tour(models.Model):
     meeting_point = models.CharField(max_length=300)
     ending_point = models.CharField(max_length=300)
     description = models.CharField(max_length=500)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class GuideTour(models.Model):
     uid = models.CharField(unique=True, max_length=8, default=None)
-    guide = models.ForeignKey(Guide)
-    tour = models.ForeignKey(Tour)
+    guide = models.ForeignKey(Guide, on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
     seen = models.BooleanField(default=False)
     answer = models.NullBooleanField(null=True)
 
@@ -33,4 +33,4 @@ class GuideTour(models.Model):
 class Profile(models.Model):
     company_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=100)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", verbose_name=_("user"))
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", verbose_name=_("user"), on_delete=models.CASCADE)
