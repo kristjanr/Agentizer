@@ -58,7 +58,7 @@
             <li>
                 <a href="mailto:hello@agentizer.com">Contact</a>
             </li>
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user.is_staff %}
             <li>
                 <a href="/tour">Tours</a>
             </li>
