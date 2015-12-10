@@ -3,11 +3,10 @@ from datetimewidget.widgets import DateTimeWidget
 from django import forms
 import account.forms
 
-from app.models import Tour, Guide
+from app.models import Tour
 
 
 class SignupForm(account.forms.SignupForm):
-
     company_name = forms.CharField(min_length=3, max_length=100)
 
 
@@ -36,7 +35,13 @@ class TourForm(MyForm):
             'ending_point',
             'description',
         ]
+        dateTimeOptions = {
+            'format': 'yyyy-mm-dd hh:ii',
+            'autoclose': True,
+            'weekStart': 1,
+        }
+        widget = DateTimeWidget(options=dateTimeOptions, bootstrap_version=3)
         widgets = {
-                    'start_time': DateTimeWidget(usel10n=True, bootstrap_version=3),
-                    'end_time': DateTimeWidget(usel10n=True, bootstrap_version=3)
-                }
+            'start_time': widget,
+            'end_time': widget
+        }

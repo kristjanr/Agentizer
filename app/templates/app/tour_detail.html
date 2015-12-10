@@ -1,0 +1,88 @@
+{% extends "app/../site_base.html" %}
+{% load account_tags %}
+{% block head_title %}
+    Tour
+{% endblock %}
+{% block extrahead %}
+    <style xmlns="http://www.w3.org/1999/html">
+        body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+    {{ form.media }}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-xs-12 form-horizontal">
+
+        <div class="row">
+            <label class="col-sm-4 control-label">Ref number</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.ref_number }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Group size</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.group_size }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Group name</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.group_name }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Language</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.language }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Start Time</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.start_time | date }} {{ tour.start_time | time }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">End Time</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.end_time | date }} {{ tour.end_time | time }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Meeting point</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.meeting_point }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Ending point</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.ending_point }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 control-label">Tour description</label>
+
+            <div class="col-sm-8">
+                <p class="form-control-static">{{ tour.description }}</p>
+            </div>
+        </div>
+        {% block extradetails %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

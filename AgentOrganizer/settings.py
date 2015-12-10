@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'bootstrapform',
     'account',
     'datetimewidget',
+    'django_tables2',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -71,6 +72,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.core.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'account.context_processors.account',
@@ -102,9 +104,11 @@ DATABASES['default'] = dj_database_url.config()
 LANGUAGE_CODE = 'en-us'
 # TIME_ZONE = 'Europe/Tallinn'
 USE_I18N = True
-USE_L10N = True
+USE_L10N = False
 USE_TZ = False
 TIME_FORMAT = 'H:i'
+DATETIME_FORMAT = 'Y-m-d H:i'
+SHORT_DATETIME_FORMAT = 'Y-m-d H:i'
 
 # Enable Connection Pooling (if desired)
 # DATABASES['default']['ENGINE'] = 'django_postgrespool'

@@ -1,23 +1,26 @@
-# import the logging library
 import logging
-
-import account.views
-import requests
-
-from app.forms import TourForm, SignupForm
-
-logger = logging.getLogger(__name__)
 from hashlib import md5
 
+import account.views
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
-from django.template import Context
-from django.template.loader import get_template
-from django.utils.dateparse import parse_datetime
-from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
 
-from app.models import Guide, GuideTour, Tour, Profile
+from django.shortcuts import render, get_object_or_404, redirect
+
+from django.template import Context
+
+from django.template.loader import get_template
+
+from django.utils.dateparse import parse_datetime
+
 from django.core.mail import send_mail
+
+from app.forms import TourForm, SignupForm
+from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
+from app.models import Guide, GuideTour, Tour, Profile
+
+logger = logging.getLogger(__name__)
 
 sms_text_template = '%s offers a job: from %s to %s. Please answer: http://agentizer.com/respond?uid=[uid]'
 
@@ -28,10 +31,6 @@ def create_sms_text(company_name, tour):
 
 def md5_hash(s):
     return md5(s.encode('utf-8')).hexdigest()[:8]
-
-
-def index(request):
-    return render(request, 'app/index.html')
 
 
 def send_emails(context):
@@ -55,7 +54,7 @@ def show_add_tour(request):
 
 
 @login_required
-def tour(request, tour_id=None):
+def add_or_edit_tour(request, tour_id=None):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -68,14 +67,13 @@ def tour(request, tour_id=None):
             tour = Tour(**tour_dict)
             tour.save()
             if request.POST['submit'] == 'Save':
-                return redirect('tour', tour.id)
+                return redirect('edit_tour', tour.id)
             # redirect to add guides url with form id
             return redirect('add_guides', tour.id)
     elif tour_id:
-        tour = get_object_or_404(Tour, id=tour_id)
+        tour = get_object_or_404(Tour, id=tour_id, user=request.user)
         if tour.guidetour_set.all():
-            context = dict(tour=tour)
-            return render(request, 'app/tour_content.html', context=context)
+            return redirect('tour-detail', tour_id)
         form = TourForm(instance=tour)
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -93,15 +91,6 @@ def tour(request, tour_id=None):
         form = TourForm(initial=initial)
 
     return render(request, 'app/add_tour.html', {'form': form})
-
-
-def show_tour_details(request):
-    id = request.GET['id']
-    tour = get_object_or_404(Tour, id=id)
-
-    context = dict(tour=tour)
-
-    return render(request, 'app/tour_content.html', context=context)
 
 
 @login_required
@@ -148,9 +137,48 @@ def send_sms(request):
             'to': guide.phone_number,
         }
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
-        r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
-        logger.warning('post response: %s', r.content)
+        # r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
+        # logger.warning('post response: %s', r.content)
     return render(request, 'app/sms_sent.html')
+
+
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
+
+
+class TourListView(LoginRequiredMixin, ListView):
+    model = Tour
+
+    def get_queryset(self):
+        return Tour.objects.filter(user=self.request.user)
+
+
+class TourDetailView(LoginRequiredMixin, DetailView):
+    model = Tour
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['guide_list'] = Guide.objects.all()
+        return context
+
+
+class SignupView(account.views.SignupView):
+    form_class = SignupForm
+
+    def after_signup(self, form):
+        self.create_profile(form)
+        super(SignupView, self).after_signup(form)
+
+    def create_profile(self, form):
+        profile = Profile.objects.create(user=self.created_user)
+        profile.company_name = form.cleaned_data["company_name"]
+        profile.save()
 
 
 def respond(request):
@@ -188,30 +216,8 @@ def answer(request):
     guide_tour.answer = guide_answer
     guide_tour.save()
     if not guide_tour.answer:
-        return render(request, 'app/rejected.html')
+        return render(request, 'app/')
 
     send_emails(context)
 
     return render(request, 'app/accepted.html', context=context)
-
-
-def show_guide_tour_details(request):
-    uid = request.GET['uid']
-    guide_tour = get_object_or_404(GuideTour, uid=uid)
-
-    context = dict(tour=guide_tour.tour)
-
-    return render(request, 'app/tour_content.html', context=context)
-
-
-class SignupView(account.views.SignupView):
-    form_class = SignupForm
-
-    def after_signup(self, form):
-        self.create_profile(form)
-        super(SignupView, self).after_signup(form)
-
-    def create_profile(self, form):
-        profile = Profile.objects.create(user=self.created_user)
-        profile.company_name = form.cleaned_data["company_name"]
-        profile.save()

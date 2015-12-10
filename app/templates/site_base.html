@@ -13,6 +13,11 @@
       ga('create', 'UA-70848099-1', 'auto');
       ga('send', 'pageview');
 
+
+
+
+
+
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -47,12 +52,17 @@
 
 {% block nav %}
     <ul class="nav navbar-nav nav-right">
-        <li>
-            <a href="#weoffer">We offer</a>
-        </li>
-        <li>
-            <a href="mailto:hello@agentizer.com">Contact</a>
-        </li>
+            <li>
+                <a href="#weoffer">We offer</a>
+            </li>
+            <li>
+                <a href="mailto:hello@agentizer.com">Contact</a>
+            </li>
+        {% if user.is_authenticated %}
+            <li>
+                <a href="/tour">Tours</a>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
 
