@@ -39,6 +39,7 @@ class TourTable(tables.Table):
         model = Tour
         exclude = (
             'id',
+            'description',
         )
         attrs = {"class": "paleblue"}
 
