@@ -2,7 +2,6 @@ import logging
 from hashlib import md5
 
 import account.views
-from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 
@@ -11,14 +10,19 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import Context
 
 from django.template.loader import get_template
-
 from django.utils.dateparse import parse_datetime
 
 from django.core.mail import send_mail
 
+from django_filters.views import FilterView
+
+from django_tables2 import RequestConfig, SingleTableView
+
+from app.filters import TourFilter
 from app.forms import TourForm, SignupForm
 from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
 from app.models import Guide, GuideTour, Tour, Profile
+from app.tables import TourTable
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +78,7 @@ def add_or_edit_tour(request, tour_id=None):
             return redirect('add_guides', tour.id)
     elif tour_id:
         tour = get_object_or_404(Tour, id=tour_id, user=request.user)
-        if tour.guidetour_set.all():
+        if tour.sent:
             return redirect('tour-detail', tour_id)
         form = TourForm(instance=tour)
     # if a GET (or any other method) we'll create a blank form
@@ -151,11 +155,17 @@ class LoginRequiredMixin(object):
         return login_required(view)
 
 
-class TourListView(LoginRequiredMixin, ListView):
-    model = Tour
+class FilterTableView(FilterView, SingleTableView):
+    def get_table_data(self):
+        f = TourFilter(self.request.GET, queryset=super().get_queryset().filter(user=self.request.user))
+        return f
 
-    def get_queryset(self):
-        return Tour.objects.filter(user=self.request.user)
+
+class TourListView(LoginRequiredMixin, FilterTableView):
+    model = Tour
+    table_class = TourTable
+    table_pagination = {"per_page": 20}
+    filterset_class = TourFilter
 
 
 class TourDetailView(LoginRequiredMixin, DetailView):
@@ -223,3 +233,9 @@ def answer(request):
     send_emails(context)
 
     return render(request, 'app/accepted.html', context=context)
+
+
+def tour_list_view(request):
+    table = TourTable(Tour.objects.filter(user=request.user))
+    RequestConfig(request, paginate={"per_page": 20}).configure(table)
+    return render(request, 'app/tour_list.html', {'table': table})

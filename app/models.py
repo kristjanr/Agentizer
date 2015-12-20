@@ -21,6 +21,20 @@ class Tour(models.Model):
     description = models.CharField(max_length=500)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
+    @property
+    def sent(self):
+        if self.guidetour_set.all():
+            return True
+        return False
+
+    @property
+    def accepted(self):
+        for guidetour in self.guidetour_set.all():
+            if guidetour.answer:
+                return True
+        else:
+            return False
+
 
 class GuideTour(models.Model):
     uid = models.CharField(unique=True, max_length=8, default=None)
