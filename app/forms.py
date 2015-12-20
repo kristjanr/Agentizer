@@ -4,6 +4,7 @@ from django import forms
 import account.forms
 
 from app.models import Tour
+from django.utils.translation import ugettext as _
 
 
 class SignupForm(account.forms.SignupForm):
@@ -35,6 +36,13 @@ class TourForm(MyForm):
             'ending_point',
             'description',
         ]
+        # labels = {
+        #             'ref_number': _('Reference number'),
+        #             'group_size': _('Group size'),
+        #             'group_name': _('Group name'),
+        #             'language': _('Language'),
+        #             'start_time': _('Start time'),
+        #         }
         dateTimeOptions = {
             'format': 'yyyy-mm-dd hh:ii',
             'autoclose': True,

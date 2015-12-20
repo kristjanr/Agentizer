@@ -1,25 +1,25 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 
 
 class Guide(models.Model):
-    name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=100)
-    email = models.EmailField(blank=True)
+    name = models.CharField(max_length=100, verbose_name=_('Name'))
+    phone_number = models.CharField(max_length=100, verbose_name=_('Phone number'))
+    email = models.EmailField(blank=True, verbose_name=_('E-mail'))
 
 
 class Tour(models.Model):
-    ref_number = models.CharField(max_length=100)
-    group_size = models.IntegerField()
-    group_name = models.CharField(max_length=100, null=True)
-    language = models.CharField(max_length=100)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    meeting_point = models.CharField(max_length=300)
-    ending_point = models.CharField(max_length=300)
-    description = models.CharField(max_length=500)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ref_number = models.CharField(max_length=100, verbose_name=_('Reference number'))
+    group_size = models.IntegerField(verbose_name=_('Group size'))
+    group_name = models.CharField(max_length=100, null=True, verbose_name=_('Group name'))
+    language = models.CharField(max_length=100, verbose_name=_('Language'))
+    start_time = models.DateTimeField(verbose_name=_('Start time'))
+    end_time = models.DateTimeField(verbose_name=_('End time'))
+    meeting_point = models.CharField(max_length=300, verbose_name=_('Meeting point'))
+    ending_point = models.CharField(max_length=300, verbose_name=_('Ending point'))
+    description = models.CharField(max_length=500, verbose_name=_('Description'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("User"))
 
     @property
     def sent(self):
@@ -40,11 +40,11 @@ class GuideTour(models.Model):
     uid = models.CharField(unique=True, max_length=8, default=None)
     guide = models.ForeignKey(Guide, on_delete=models.CASCADE)
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
-    seen = models.BooleanField(default=False)
-    answer = models.NullBooleanField(null=True)
+    seen = models.BooleanField(default=False, verbose_name=_('Seen'))
+    answer = models.NullBooleanField(null=True, verbose_name=_('Answer'))
 
 
 class Profile(models.Model):
-    company_name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=100)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile", verbose_name=_("user"), on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=100, verbose_name=_('Company name'))
+    phone_number = models.CharField(max_length=100, verbose_name=_('Phone number'))
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='profile', verbose_name=_('User'), on_delete=models.CASCADE)

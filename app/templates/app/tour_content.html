@@ -1,63 +1,64 @@
+{% load i18n %}
 <div class="col-xs-12 form-horizontal">
 
     <div class="row">
-        <label class="col-sm-4 control-label">Ref number</label>
+        <label class="col-sm-4 control-label">{% trans "Reference number" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.ref_number }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Group size</label>
+        <label class="col-sm-4 control-label">{% trans "Group size" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.group_size }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Group name</label>
+        <label class="col-sm-4 control-label">{% trans "Group name" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.group_name }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Language</label>
+        <label class="col-sm-4 control-label">{% trans "Language" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.language }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Start Time</label>
+        <label class="col-sm-4 control-label">{% trans "Start time" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.start_time | date }} {{ tour.start_time | time }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">End Time</label>
+        <label class="col-sm-4 control-label">{% trans "End time" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.end_time | date}} {{ tour.end_time | time}}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Meeting point</label>
+        <label class="col-sm-4 control-label">{% trans "Meeting point" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.meeting_point }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Ending point</label>
+        <label class="col-sm-4 control-label">{% trans "Ending point" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.ending_point }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Tour description</label>
+        <label class="col-sm-4 control-label">{% trans "Description" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ tour.description }}</p>

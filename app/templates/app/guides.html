@@ -1,6 +1,7 @@
 {% extends "app/../site_base.html" %}
+{% load i18n %}
 {% block head_title %}
-    Guides
+    {% trans "Guides" %}
 {% endblock %}
 
 {% block extrahead %}
@@ -15,7 +16,8 @@
 {% block body %}
     <div class="container">
         <a href="{% url 'edit_tour' tour.id %}">Back</a>
-        <h2>Please choose guides to send SMS </h2>
+
+        <h2>{% trans "Please choose guides to send SMS" %}</h2>
 
         <form action="{% url 'send_sms' %}" method="post">
             {% if tour %}
@@ -24,12 +26,12 @@
 
             {% csrf_token %}
             <table class="table table-striped">
-            <thead>
-            <th></th>
-            <th>Name</th>
-            <th>Phone number</th>
-            <th>E-mail</th>
-            </thead>
+                <thead>
+                <th></th>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Phone number" %}</th>
+                <th>{% trans "E-mail" %}</th>
+                </thead>
                 {% if guides_list %}
                     {% for guide in guides_list %}
                         <tr>
@@ -43,22 +45,23 @@
                     {% endfor %}
                 {% endif %}
             </table>
-            <input type="submit" class="btn btn-primary" value="Send SMS to selected">
+            <input type="submit" class="btn btn-primary" value="{% trans "Send SMS to selected" %}">
         </form>
         <br>
+
         <div class="row">
             {% if tour %}
 
                 <div class="col-xs-6 form-horizontal">
 
-                    <h2>Tour Details </h2>
+                    <h2>{% trans "Tour Details" %}</h2>
 
                     {% include "app/tour_content.html" %}
 
                 </div>
             {% endif %}
             <div class="col-xs-6">
-                <p><b>SMS which will be sent to selected tour guides:</b></p>
+                <p><b>{% trans "SMS which will be sent to selected tour guides" %}:</b></p>
                 <pre>{{ sms_text }}</pre>
             </div>
         </div>

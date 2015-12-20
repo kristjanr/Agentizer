@@ -1,0 +1,188 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-20 13:15-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: AgentOrganizer/settings.py:117
+msgid "Estonian"
+msgstr "Eesti keel"
+
+#: app/filters.py:26 app/tables.py:48
+msgid "SMS sent"
+msgstr "SMS saadetud"
+
+#: app/filters.py:27 app/tables.py:49
+msgid "Guide accepted"
+msgstr "Giid nõus"
+
+#: app/models.py:7 app/templates/app/guides.html:31
+msgid "Name"
+msgstr "Nimi"
+
+#: app/models.py:8 app/models.py:49 app/templates/app/guides.html:32
+msgid "Phone number"
+msgstr "Telefoninumber"
+
+#: app/models.py:9 app/templates/app/guides.html:33
+msgid "E-mail"
+msgstr "E-post"
+
+#: app/models.py:13 app/templates/app/tour_content.html:5
+msgid "Reference number"
+msgstr "Viitenumber"
+
+#: app/models.py:14 app/templates/app/tour_content.html:12
+msgid "Group size"
+msgstr "Grupi suurus"
+
+#: app/models.py:15 app/templates/app/tour_content.html:19
+msgid "Group name"
+msgstr "Grupi nimi"
+
+#: app/models.py:16 app/templates/app/tour_content.html:26
+msgid "Language"
+msgstr "Keel"
+
+#: app/models.py:17 app/templates/app/tour_content.html:33
+msgid "Start time"
+msgstr "Algusaeg"
+
+#: app/models.py:18 app/templates/app/tour_content.html:40
+msgid "End time"
+msgstr "Lõpuaeg"
+
+#: app/models.py:19 app/templates/app/tour_content.html:47
+msgid "Meeting point"
+msgstr "Kohtumispunkt"
+
+#: app/models.py:20 app/templates/app/tour_content.html:54
+msgid "Ending point"
+msgstr "Lõpupunkt"
+
+#: app/models.py:21 app/templates/app/tour_content.html:61
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: app/models.py:22 app/models.py:50
+msgid "User"
+msgstr "Kasutaja"
+
+#: app/models.py:43
+msgid "Seen"
+msgstr "Nähtud"
+
+#: app/models.py:44
+msgid "Answer"
+msgstr "Vastus"
+
+#: app/models.py:48
+msgid "Company name"
+msgstr "Firma nimi"
+
+#: app/templates/app/add_tour.html:5 app/templates/app/tour_list.html:19
+msgid "Add Tour"
+msgstr "Lisa tuur"
+
+#: app/templates/app/add_tour.html:24
+msgid "Please fill out tour information"
+msgstr "Palun kirjutage tuuri info"
+
+#: app/templates/app/add_tour.html:46
+msgid "Save"
+msgstr "Salvesta"
+
+#: app/templates/app/add_tour.html:47
+msgid "Next"
+msgstr "Edasi"
+
+#: app/templates/app/guides.html:4
+msgid "Guides"
+msgstr "Giidid"
+
+#: app/templates/app/guides.html:20
+msgid "Please choose guides to send SMS"
+msgstr "Palun valige giidid, kellele saata SMS"
+
+#: app/templates/app/guides.html:48
+msgid "Send SMS to selected"
+msgstr "Saada valitutele SMS"
+
+#: app/templates/app/guides.html:57
+msgid "Tour Details"
+msgstr "Tuuri üksikasjad"
+
+#: app/templates/app/guides.html:64
+msgid "SMS which will be sent to selected tour guides"
+msgstr "SMS, mis saadetakse valitud giididele"
+
+#: app/templates/app/tour_list.html:6 app/templates/app/tour_list.html.py:20
+#: app/templates/site_base.html:58
+msgid "Tours"
+msgstr "Tuurid"
+
+#: app/templates/site_base.html:51 app/templates/site_base.html.py:73
+msgid "We offer"
+msgstr "Meie pakume"
+
+#: app/templates/site_base.html:54 app/templates/site_base.html.py:77
+msgid "Contact"
+msgstr "Kontakt"
+
+#: app/templates/site_base.html:69
+msgid "Home"
+msgstr "Kodu"
+
+#: app/templates/site_base.html:80
+msgid "Copyright &copy; Agentizer 2015. All Rights Reserved"
+msgstr "Autoriõigus &copy; Agentizer 2015. Kõik õigused kaitstud"
+
+#: app/views.py:26
+msgid "offers a job"
+msgstr "pakub tööd"
+
+#: app/views.py:26
+msgid "from"
+msgstr "alates"
+
+#: app/views.py:26
+msgid "to"
+msgstr "kuni"
+
+#: app/views.py:26
+msgid "Please respond"
+msgstr "Palun vastake"
+
+#: app/views.py:71
+msgid "Some group"
+msgstr "Mingi grupp"
+
+#: app/views.py:72
+msgid "English"
+msgstr "Inglise keel"
+
+#: app/views.py:75
+msgid "Tervis spa"
+msgstr "Tervis spaa"
+
+#: app/views.py:76
+msgid "Town Hall square"
+msgstr "Raekoja plats"
+
+#: app/views.py:77
+msgid "Walking tour in Tallinn old town"
+msgstr "Jalutamine Tallinna vanalinnas"

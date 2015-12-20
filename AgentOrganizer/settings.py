@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 import dj_database_url
+from django.utils.translation import ugettext_lazy as _
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -50,6 +51,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,6 +79,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'account.context_processors.account',
                 'pinax_theme_bootstrap.context_processors.theme',
+                'django.template.context_processors.i18n'
             ],
         },
     },
@@ -101,7 +104,7 @@ DATABASES['default'] = dj_database_url.config()
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'et'
 # TIME_ZONE = 'Europe/Tallinn'
 USE_I18N = True
 USE_L10N = False
@@ -109,6 +112,11 @@ USE_TZ = False
 TIME_FORMAT = 'H:i'
 DATETIME_FORMAT = 'Y-m-d H:i'
 SHORT_DATETIME_FORMAT = 'Y-m-d H:i'
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'app/locale'),)
+LANGUAGES = (
+    ('et', _('Estonian')),
+    # ('en', _('English')),
+)
 
 # Enable Connection Pooling (if desired)
 # DATABASES['default']['ENGINE'] = 'django_postgrespool'

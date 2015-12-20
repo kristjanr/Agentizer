@@ -3,22 +3,17 @@ from hashlib import md5
 
 import account.views
 from django.views.generic.detail import DetailView
-
 from django.contrib.auth.decorators import login_required
-
 from django.shortcuts import render, get_object_or_404, redirect
-
 from django.template import Context
-
 from django.template.loader import get_template
-
 from django.utils.dateparse import parse_datetime
-
 from django.core.mail import send_mail
-
 from django_filters.views import FilterView
 
 from django_tables2 import RequestConfig, SingleTableView
+
+from django.utils.translation import ugettext as _
 
 from app.filters import TourFilter
 from app.forms import TourForm, SignupForm
@@ -28,7 +23,7 @@ from app.tables import TourTable, GuideTourTable
 
 logger = logging.getLogger(__name__)
 
-sms_text_template = '%s offers a job: from %s to %s. Please answer: http://agentizer.com/respond?uid=[uid]'
+sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _('Please respond') + ': http://agentizer.com/respond?uid=[uid]'
 
 
 def create_sms_text(company_name, tour):
@@ -42,21 +37,6 @@ def md5_hash(s):
 def send_emails(context):
     tour_info = get_template('app/tour_content_email.html').render(Context(context))
     send_mail('Tour details', tour_info, DEFAULT_FROM_EMAIL, [context['guide'].email, context['user'].email], html_message=tour_info)
-
-
-@login_required
-def show_add_tour(request):
-    tour = dict(
-        ending_point='Town Hall Square',
-        end_time='2015-11-20T13:00',
-        description='Walking add_tour in Tallinn old town',
-        group_size=110,
-        language='English',
-        start_time='2015-11-20T10:00',
-        ref_number=15112015,
-        meeting_point='Tervis SPA'
-    )
-    return render(request, 'app/add_tour.html', context=tour)
 
 
 @login_required
@@ -88,13 +68,13 @@ def add_or_edit_tour(request, tour_id=None):
         initial = dict(
             ref_number='15112015',
             group_size='110',
-            group_name='Some group',
-            language='English',
+            group_name=_('Some group'),
+            language=_('English'),
             start_time=parse_datetime('2015-11-20T10:00'),
             end_time=parse_datetime('2015-11-20T13:00'),
-            meeting_point='Tervis SPA',
-            ending_point='Town Hall square',
-            description='Walking tour in Tallinn old town',
+            meeting_point=_('Tervis spa'),
+            ending_point=_('Town Hall square'),
+            description=_('Walking tour in Tallinn old town'),
         )
         form = TourForm(initial=initial)
 
@@ -174,6 +154,7 @@ class TourDetailView(LoginRequiredMixin, DetailView):
     model = Tour
 
     def get_queryset(self):
+        ppp = self.request.LANGUAGE_CODE
         return super().get_queryset().filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):

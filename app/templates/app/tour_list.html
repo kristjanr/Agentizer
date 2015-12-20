@@ -1,8 +1,9 @@
 {% extends "app/../site_base.html" %}
 {% load staticfiles %}
 {% load render_table from django_tables2 %}
+{% load i18n %}
 {% block head_title %}
-    Tours
+    {% trans "Tours" %}
 {% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
@@ -15,8 +16,8 @@
 {% endblock %}
 
 {% block body %}
-    <a href="/tour/add" class="btn btn-info" role="button">Add Tour</a>
-    <h2>Tours</h2>
+    <a href="/tour/add" class="btn btn-info" role="button">{% trans "Add Tour" %}</a>
+    <h2>{% trans "Tours" %}</h2>
     {% render_table table %}
     <form action="" method="get">
         {{ filter.form.as_p }}

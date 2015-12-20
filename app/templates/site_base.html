@@ -1,6 +1,7 @@
 {% extends "theme_bootstrap/base.html" %}
 {% load staticfiles %}
 {% load account_tags %}
+{% load i18n %}
 
 {% block extra_head_base %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,12 +13,6 @@
 
       ga('create', 'UA-70848099-1', 'auto');
       ga('send', 'pageview');
-
-
-
-
-
-
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -53,14 +48,14 @@
 {% block nav %}
     <ul class="nav navbar-nav nav-right">
             <li>
-                <a href="#weoffer">We offer</a>
+                <a href="#weoffer">{% trans "We offer" %}</a>
             </li>
             <li>
-                <a href="mailto:hello@agentizer.com">Contact</a>
+                <a href="mailto:hello@agentizer.com">{% trans "Contact" %}</a>
             </li>
         {% if user.is_authenticated and user.is_staff %}
             <li>
-                <a href="/tour">Tours</a>
+                <a href="/tour">{% trans "Tours" %}</a>
             </li>
         {% endif %}
     </ul>
@@ -71,18 +66,18 @@
         <div class="col-lg-12">
             <ul class="list-inline">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="#">{% trans "Home" %}</a>
                 </li>
                 <li class="footer-menu-divider">&sdot;</li>
                 <li>
-                    <a href="#weoffer">We Offer</a>
+                    <a href="#weoffer">{% trans "We offer" %}</a>
                 </li>
                 <li class="footer-menu-divider">&sdot;</li>
                 <li>
-                    <a href="mailto:hello@agentizer.com">Contact</a>
+                    <a href="mailto:hello@agentizer.com">{% trans "Contact" %}</a>
                 </li>
             </ul>
-            <p class="copyright text-muted small">Copyright &copy; Agentizer 2015. All Rights Reserved</p>
+            <p class="copyright text-muted small">{% trans "Copyright &copy; Agentizer 2015. All Rights Reserved" %}</p>
         </div>
     </div>
 {% endblock %}

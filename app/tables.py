@@ -1,6 +1,7 @@
 from django.utils.safestring import mark_safe
 from django_tables2 import tables
 import django_tables2
+from django.utils.translation import ugettext as _
 
 from app.models import Tour, GuideTour
 
@@ -40,8 +41,9 @@ class TourTable(tables.Table):
         exclude = (
             'id',
             'description',
+            'user',
         )
         attrs = {"class": "paleblue"}
 
-    sent = django_tables2.BooleanColumn(orderable=False)
-    accepted = django_tables2.BooleanColumn(null=True, orderable=False)
+    sent = django_tables2.BooleanColumn(orderable=False, verbose_name=_("SMS sent"))
+    accepted = django_tables2.BooleanColumn(null=True, orderable=False, verbose_name=_("Guide accepted"))
