@@ -14,6 +14,7 @@
 
 {% block body %}
     <div class="container">
+        <a href="{% url 'edit_tour' tour.id %}">Back</a>
         <h2>Please choose guides to send SMS </h2>
 
         <form action="{% url 'send_sms' %}" method="post">
@@ -23,6 +24,12 @@
 
             {% csrf_token %}
             <table class="table table-striped">
+            <thead>
+            <th></th>
+            <th>Name</th>
+            <th>Phone number</th>
+            <th>E-mail</th>
+            </thead>
                 {% if guides_list %}
                     {% for guide in guides_list %}
                         <tr>
@@ -39,7 +46,6 @@
             <input type="submit" class="btn btn-primary" value="Send SMS to selected">
         </form>
         <br>
-
         <div class="row">
             {% if tour %}
 
@@ -51,14 +57,11 @@
 
                 </div>
             {% endif %}
-
             <div class="col-xs-6">
                 <p><b>SMS which will be sent to selected tour guides:</b></p>
                 <pre>{{ sms_text }}</pre>
             </div>
         </div>
-
         <br>
-
     </div>
 {% endblock %}

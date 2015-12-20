@@ -1,4 +1,6 @@
 {% extends "app/../site_base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
 {% load account_tags %}
 {% block head_title %}
     Tour
@@ -11,6 +13,7 @@
         }
     </style>
     {{ form.media }}
+    <link rel="stylesheet" href="{% static "django_tables2/themes/paleblue/css/screen.css" %}"/>
 
 {% endblock %}
 
@@ -81,8 +84,14 @@
                 <p class="form-control-static">{{ tour.description }}</p>
             </div>
         </div>
+        <div class="col-sm-12">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <h4>Guides the tour invitation was sent to:</h4>
+                {% render_table table %}
+            </div>
+        </div>
         {% block extradetails %}
         {% endblock %}
-
     </div>
 {% endblock %}

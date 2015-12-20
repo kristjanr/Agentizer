@@ -3,6 +3,7 @@ from hashlib import md5
 
 import account.views
 from django.views.generic.detail import DetailView
+
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render, get_object_or_404, redirect
@@ -10,6 +11,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import Context
 
 from django.template.loader import get_template
+
 from django.utils.dateparse import parse_datetime
 
 from django.core.mail import send_mail
@@ -22,7 +24,7 @@ from app.filters import TourFilter
 from app.forms import TourForm, SignupForm
 from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
 from app.models import Guide, GuideTour, Tour, Profile
-from app.tables import TourTable
+from app.tables import TourTable, GuideTourTable
 
 logger = logging.getLogger(__name__)
 
@@ -145,7 +147,7 @@ def send_sms(request):
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
         # r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
         # logger.warning('post response: %s', r.content)
-    return render(request, 'app/sms_sent.html')
+    return redirect('tour-detail', tour_id)
 
 
 class LoginRequiredMixin(object):
@@ -176,7 +178,9 @@ class TourDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['guide_list'] = Guide.objects.all()
+        table = GuideTourTable(self.object.guidetour_set.all())
+        RequestConfig(self.request).configure(table)
+        context['table'] = table
         return context
 
 
@@ -233,9 +237,3 @@ def answer(request):
     send_emails(context)
 
     return render(request, 'app/accepted.html', context=context)
-
-
-def tour_list_view(request):
-    table = TourTable(Tour.objects.filter(user=request.user))
-    RequestConfig(request, paginate={"per_page": 20}).configure(table)
-    return render(request, 'app/tour_list.html', {'table': table})

@@ -2,7 +2,30 @@ from django.utils.safestring import mark_safe
 from django_tables2 import tables
 import django_tables2
 
-from app.models import Tour
+from app.models import Tour, GuideTour
+
+
+class GuideTourTable(tables.Table):
+    class Meta:
+        model = GuideTour
+        exclude = (
+            'id',
+            'uid',
+            'guide',
+            'tour',
+        )
+        sequence = (
+            'name',
+            'phone_number',
+            'email',
+            'seen',
+            'answer',
+        )
+        attrs = {"class": "paleblue"}
+
+    name = django_tables2.Column(accessor='guide.name')
+    phone_number = django_tables2.Column(accessor='guide.phone_number')
+    email = django_tables2.Column(accessor='guide.email')
 
 
 class TourTable(tables.Table):
@@ -14,7 +37,9 @@ class TourTable(tables.Table):
 
     class Meta:
         model = Tour
-        exclude = ('id')
+        exclude = (
+            'id',
+        )
         attrs = {"class": "paleblue"}
 
     sent = django_tables2.BooleanColumn(orderable=False)
