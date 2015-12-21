@@ -11,14 +11,14 @@
             <h2>{{ guide.name }}, {% trans "you have accepted the tour" %}!</h2>
 
 
-            <h2 class="text-center">{% trans "Tour Details" %}</h2>
+            <h2 class="text-center">{% trans "Tour details" %}</h2>
 
             {% include "app/tour_content_with_contact.html" %}
 
             <h2>{% trans "These details have been sent to your e-mail" %}: {{ guide.email }}</h2>
 
         {% else %}
-            <h2>{% trans "Sorry, somebody else already accepted the tour" %}!</h2>
+            <h2>{% trans "Someone else already accepted this tour" %}!</h2>
         {% endif %}
     </div>
 {% endblock %}

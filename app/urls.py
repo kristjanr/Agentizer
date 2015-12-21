@@ -16,5 +16,5 @@ urlpatterns = patterns('',
    url(r'^send_sms', views.send_sms, name='send_sms'),
    url(r'^respond', app.views.respond, name='respond'),
    url(r'^answer', app.views.answer, name='answer'),
-   url(r'^tour/(?P<pk>[0-9]+)/view', login_required(views.TourDetailView.as_view()), name='tour-detail'),
+   url(r'^tour/(?P<pk>[0-9]+)/view$', login_required(views.TourDetailView.as_view()), name='view_tour'),
 )

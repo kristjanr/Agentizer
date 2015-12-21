@@ -62,7 +62,7 @@ def add_or_edit_tour(request, tour_id=None):
     elif tour_id:
         tour = get_object_or_404(Tour, id=tour_id, user=request.user)
         if tour.accepted:
-            return redirect('tour-detail', tour_id)
+            return redirect('view_tour', tour_id)
         if tour.sent:
             return redirect('add_guides', tour_id)
         form = TourForm(instance=tour)
@@ -92,7 +92,7 @@ def add_guides(request, tour_id):
 
     guides_list = Guide.objects.order_by('name')
 
-    guides_sent = tour.guidetour_set.all()
+    guidetours_sent = tour.guidetour_set.all()
     context = dict(
         sms_text=sms_text,
         guides_list=guides_list,
@@ -100,11 +100,11 @@ def add_guides(request, tour_id):
         tour_id=tour.id,
         user=tour.user,
     )
-    if guides_sent:
-        table = GuideTourTable(guides_sent)
+    if guidetours_sent:
+        table = GuideTourTable(guidetours_sent)
         RequestConfig(request).configure(table)
         context['table'] = table
-    return render(request, 'app/guides.html', context=context)
+    return render(request, 'app/guides_add.html', context=context)
 
 
 @login_required
@@ -135,7 +135,7 @@ def send_sms(request):
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
         r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
         logger.warning('post response: %s', r.content)
-    return redirect('tour-detail', tour_id)
+    return redirect('add_guides', tour_id)
 
 
 class LoginRequiredMixin(object):

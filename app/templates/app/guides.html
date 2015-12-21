@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% load render_table from django_tables2 %}
 {% load i18n %}
+
 {% block head_title %}
-    {% trans "Guides" %}
 {% endblock %}
 
 {% block extrahead %}
@@ -13,69 +13,30 @@
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
         }
     </style>
+    {{ form.media }}
     <link rel="stylesheet" href="{% static "django_tables2/themes/paleblue/css/screen.css" %}"/>
 {% endblock %}
 
 {% block body %}
     <div class="container">
+
         <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
+
+        <div class="container">
+
+            {% block tour_details_area %}
+
+            {% endblock %}
+        </div>
         {% if table %}
-            <div class="row">
-                <div class="col-xs-12">
-                    <h4>{% trans "Guides the tour invitation was sent to" %}:</h4>
-                    {% render_table table %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3>{% trans "Guides the tour invitation was sent to" %}:</h3>
+                        {% render_table table %}
+                    </div>
                 </div>
             </div>
         {% endif %}
-
-        <h3>{% trans "Please choose guides to send SMS" %}</h3>
-
-        <form action="{% url 'send_sms' %}" method="post">
-            {% if tour %}
-                <input type="hidden" name="tour_id" value="{{ tour.id }}">
-            {% endif %}
-
-            {% csrf_token %}
-            <table class="table table-striped">
-                <thead>
-                <th></th>
-                <th>{% trans "Name" %}</th>
-                <th>{% trans "Phone number" %}</th>
-                <th>{% trans "E-mail" %}</th>
-                </thead>
-                {% if guides_list %}
-                    {% for guide in guides_list %}
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="guide_ids" value="{{ guide.id }}" class="checkbox-inline">
-                            </td>
-                            <td>{{ guide.name }}</td>
-                            <td>{{ guide.phone_number }}</td>
-                            <td>{{ guide.email }}</td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-            </table>
-            <input type="submit" class="btn btn-primary" value="{% trans "Send SMS to selected" %}">
-        </form>
-        <br>
-
-        <div class="row">
-            {% if tour %}
-
-                <div class="col-xs-6 form-horizontal">
-
-                    <h3>{% trans "Tour Details" %}</h3>
-
-                    {% include "app/tour_content.html" %}
-
-                </div>
-            {% endif %}
-            <div class="col-xs-6">
-                <p><b>{% trans "SMS which will be sent to selected tour guides" %}:</b></p>
-                <pre>{{ sms_text }}</pre>
-            </div>
-        </div>
-        <br>
     </div>
 {% endblock %}

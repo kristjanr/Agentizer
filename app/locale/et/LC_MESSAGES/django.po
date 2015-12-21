@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-20 19:05-0600\n"
+"POT-Creation-Date: 2015-12-21 02:54-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,15 @@ msgstr "SMS saadetud"
 msgid "Guide accepted"
 msgstr "Giid nõus"
 
-#: app/models.py:7 app/templates/app/guides.html:42
+#: app/models.py:7 app/templates/app/guides_add.html:42
 msgid "Name"
 msgstr "Nimi"
 
-#: app/models.py:8 app/models.py:52 app/templates/app/guides.html:43
+#: app/models.py:8 app/models.py:52 app/templates/app/guides_add.html:43
 msgid "Phone number"
 msgstr "Telefoninumber"
 
-#: app/models.py:9 app/templates/app/guides.html:44
+#: app/models.py:9 app/templates/app/guides_add.html:44
 msgid "E-mail"
 msgstr "E-post"
 
@@ -100,11 +100,12 @@ msgstr "Firma nimi"
 
 #: app/templates/app/accepted.html:11
 msgid "you have accepted the tour"
-msgstr "aktsepteerisid tuuri"
+msgstr "aktsepteerisite tuuri"
 
-#: app/templates/app/accepted.html:14 app/templates/app/guides.html:68
-#: app/templates/app/respond.html:12
-msgid "Tour Details"
+#: app/templates/app/accepted.html:14 app/templates/app/guides_add.html:17
+#: app/templates/app/respond.html:12 app/templates/app/tour_detail.html:8
+#: app/templates/app/tour_detail.html:18 app/views.py:40
+msgid "Tour details"
 msgstr "Tuuri üksikasjad"
 
 #: app/templates/app/accepted.html:18
@@ -112,52 +113,57 @@ msgid "These details have been sent to your e-mail"
 msgstr "Need andmed saadeti teie e-posti aadressile"
 
 #: app/templates/app/accepted.html:21
-msgid "Sorry, somebody else already accepted the tour"
-msgstr "Keegi teine juba aktsepteeris tuuri"
+msgid "Someone else already accepted this tour"
+msgstr "Keegi teine juba aktsepteeris selle tuuri"
 
 #: app/templates/app/add_tour.html:5 app/templates/app/tour_list.html:19
 msgid "Add Tour"
 msgstr "Lisa tuur"
 
-#: app/templates/app/add_tour.html:24
-msgid "Please fill out tour information"
-msgstr "Palun kirjutage tuuri info"
-
-#: app/templates/app/add_tour.html:46 app/views.py:58
-msgid "Save"
-msgstr "Salvesta"
-
-#: app/templates/app/add_tour.html:47
-msgid "Next"
-msgstr "Järgmine"
-
-#: app/templates/app/guides.html:6
-msgid "Guides"
-msgstr "Giidid"
-
-#: app/templates/app/guides.html:21
+#: app/templates/app/add_tour.html:23 app/templates/app/guides.html:23
 msgid "Back"
 msgstr "Tagasi"
 
-#: app/templates/app/guides.html:25 app/templates/app/tour_detail.html:92
+#: app/templates/app/add_tour.html:26
+msgid "Please fill out tour information"
+msgstr "Palun kirjutage tuuri info"
+
+#: app/templates/app/add_tour.html:48 app/views.py:58
+msgid "Save"
+msgstr "Salvesta"
+
+#: app/templates/app/add_tour.html:49
+#: app/templates/django_tables2/table.html:63
+msgid "Next"
+msgstr "Järgmine"
+
+#: app/templates/app/guides.html:35
 msgid "Guides the tour invitation was sent to"
 msgstr "Giidid, kellele pakkumine saadeti"
 
-#: app/templates/app/guides.html:31
-msgid "Please choose guides to send SMS"
-msgstr "Palun valige giidid, kellele saata SMS"
+#: app/templates/app/guides_add.html:7
+msgid "Select guides"
+msgstr "Vali giidid"
 
-#: app/templates/app/guides.html:59
-msgid "Send SMS to selected"
-msgstr "Saada valitutele SMS"
-
-#: app/templates/app/guides.html:75
+#: app/templates/app/guides_add.html:25
 msgid "SMS which will be sent to selected tour guides"
 msgstr "SMS, mis saadetakse valitud giididele"
 
+#: app/templates/app/guides_add.html:31
+msgid "Please choose guides to send SMS"
+msgstr "Palun valige giidid, kellele saata SMS"
+
+#: app/templates/app/guides_add.html:59
+msgid "Send SMS to selected"
+msgstr "Saada valitutele SMS"
+
 #: app/templates/app/index.html:21
-msgid "A simple online tool for travel agents to get in contact with tour guides about an upcoming tour"
-msgstr "Lihtne online tööriist turismiagentuuridele giididega eesoleva tuuri asjus kontakteerumiseks"
+msgid ""
+"A simple online tool for travel agents to get in contact with tour guides "
+"about an upcoming tour"
+msgstr ""
+"Lihtne online tööriist turismiagentuuridele giididega eesoleva tuuri asjus "
+"kontakteerumiseks"
 
 #: app/templates/app/index.html:23
 msgid ""
@@ -255,6 +261,20 @@ msgstr "Tuurid"
 msgid "Filter"
 msgstr "Filtreeri"
 
+#: app/templates/django_tables2/table.html:55
+msgid "Previous"
+msgstr "Eelmine"
+
+#: app/templates/django_tables2/table.html:59
+#, python-format
+msgid "Page %(current)s of %(total)s"
+msgstr "Lk: %(current)s - %(total)s-st"
+
+#: app/templates/django_tables2/table.html:66
+#, python-format
+msgid "%(count)s of %(total)s"
+msgstr "%(count)s kirjet %(total)s-st"
+
 #: app/templates/site_base.html:51 app/templates/site_base.html.py:73
 msgid "We offer"
 msgstr "Meie pakume"
@@ -287,12 +307,6 @@ msgstr "kuni"
 msgid "Please respond"
 msgstr "Palun vastake"
 
-#: app/views.py:40
-#, fuzzy
-#| msgid "Tour Details"
-msgid "Tour details"
-msgstr "Tuuri üksikasjad"
-
 #: app/views.py:74
 msgid "Some group"
 msgstr "Mingi grupp"
@@ -308,15 +322,3 @@ msgstr "Raekoja plats"
 #: app/views.py:80
 msgid "Walking tour in Tallinn old town"
 msgstr "Jalutamine Tallinna vanalinnas"
-
-#~ msgid "Guides, for whom the SMS has already been sent"
-#~ msgstr "Giidid, kellele on SMS juba saadetud"
-
-#~ msgid "Previous"
-#~ msgstr "Eelmine"
-
-#~ msgid "Page %(current)s of %(total)s"
-#~ msgstr "%(current)s lehekülg %(total)s-st"
-
-#~ msgid "%(count)s of %(total)s"
-#~ msgstr "%(count)s kirjet %(total)s"
