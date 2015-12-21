@@ -1,5 +1,6 @@
 {% extends "app/../site_base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 {% block head_title %}
     Main
 {% endblock %}
@@ -17,9 +18,9 @@
                     <div class="intro-message">
                         <h1>Agentizer</h1>
 
-                        <h3>A simple online tool for travel agents to book tour guides.</h3>
+                        <h3>{% trans "A simple online tool for travel agents to get in contact with tour guides about an upcoming tour" %}.</h3>
 
-                        <h3>One time data entry, group messaging and fast responses make it efficient.</h3>
+                        <h3>{% trans "One time data entry, group messaging and fast responses make it efficient" %}.</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
@@ -49,7 +50,7 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Agentizer</h2><br>
 
-                    <p class="lead">Cost-efficient. Clear and simple pricing model. You only pay fixed fee for every confirmed guide. No signup fee.</p>
+                    <p class="lead">{% trans "Cost-efficient. Clear and simple pricing model. You only pay fixed fee for every confirmed guide. No signup fee." %}</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="https://s3-eu-west-1.amazonaws.com/garage48parnu/images/kkkk.png" alt="">
@@ -70,9 +71,9 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Fast and Simple</h2>
+                    <h2 class="section-heading">{% trans "Fast and Simple" %}</h2>
 
-                    <p class="lead">Contact all your guides at once and get immediate feedback. Save the time of your sales force. Be better partner to your guides</p>
+                    <p class="lead">{% trans "Contact all your guides at once and get immediate feedback. Save the time of your sales force. Be better partner to your guides" %}</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                     <img class="img-responsive" src="https://s3-eu-west-1.amazonaws.com/garage48parnu/images/map.jpg" alt="">
@@ -93,9 +94,9 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Saves Time</h2>
+                    <h2 class="section-heading">{% trans "Saves Time" %}</h2>
 
-                    <p class="lead">No waste of time. Stop spending hours for manual calling. Use your time for improving the services, quality and make extra sales.</p>
+                    <p class="lead">{% trans "No waste of time. Stop spending hours for manual calling. Use your time for improving the services, quality and make extra sales." %}</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="https://s3-eu-west-1.amazonaws.com/garage48parnu/images/fast.jpg" alt="">

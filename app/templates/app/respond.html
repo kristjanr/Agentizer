@@ -10,30 +10,24 @@
 
             <div id="content">
                 <h2 class="text-center">{% trans "Tour Details" %}</h2>
-
                 {% include "app/tour_content.html" with tour=guide_tour.tour only %}
-
                 <br>
-
                 <div class="col-xs-12">
                     <h3>{{ guide_tour.guide.name }}, {% trans "will you accept this job" %}?</h3>
                 </div>
                 <div class="col-xs-12">
                     <br>
                 </div>
-
-
                 <div class="col-xs-12" style="padding-bottom: 30px">
                     <form action="{% url 'answer' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" name="uid" value="{{ guide_tour.uid }}">
-                        <input type="submit" class="btn btn-success col-xs-6" value="yes" name="answer">
+                        <input type="submit" class="btn btn-success col-xs-6" value="{% trans "yes" %}" name="answer">
 
                         <div class="col-xs-1"></div>
-                        <input type="submit" class="btn btn-danger col-xs-4" value="no" name="answer">
+                        <input type="submit" class="btn btn-danger col-xs-4" value="{% trans "no" %}" name="answer">
                     </form>
                 </div>
-
             </div>
         </div>
    {% endif %}

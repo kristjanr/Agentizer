@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-20 18:26-0600\n"
+"POT-Creation-Date: 2015-12-20 19:05-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,7 +123,7 @@ msgstr "Lisa tuur"
 msgid "Please fill out tour information"
 msgstr "Palun kirjutage tuuri info"
 
-#: app/templates/app/add_tour.html:46
+#: app/templates/app/add_tour.html:46 app/views.py:58
 msgid "Save"
 msgstr "Salvesta"
 
@@ -155,6 +155,49 @@ msgstr "Saada valitutele SMS"
 msgid "SMS which will be sent to selected tour guides"
 msgstr "SMS, mis saadetakse valitud giididele"
 
+#: app/templates/app/index.html:21
+msgid "A simple online tool for travel agents to get in contact with tour guides about an upcoming tour"
+msgstr "Lihtne online tööriist turismiagentuuridele giididega eesoleva tuuri asjus kontakteerumiseks"
+
+#: app/templates/app/index.html:23
+msgid ""
+"One time data entry, group messaging and fast responses make it efficient"
+msgstr ""
+"Ühekordne andmete sisestus, lihtne teadete edastamine ja kiired vastused"
+
+#: app/templates/app/index.html:53
+msgid ""
+"Cost-efficient. Clear and simple pricing model. You only pay fixed fee for "
+"every confirmed guide. No signup fee."
+msgstr ""
+"Kuluefektiivne. Selge ja lihtne hinnastamine. Maksate vaid iga kinnitatud "
+"giidi eest. Liitumistasuta."
+
+#: app/templates/app/index.html:74
+msgid "Fast and Simple"
+msgstr "Lihtne ja kiire"
+
+#: app/templates/app/index.html:76
+msgid ""
+"Contact all your guides at once and get immediate feedback. Save the time of "
+"your sales force. Be better partner to your guides"
+msgstr ""
+"Kontakteeru kõikide oma giididega koheselt ja saa vastus hetkega. Säästa oma "
+"töötajate aega. Ole parem partner oma giididele"
+
+#: app/templates/app/index.html:97
+msgid "Saves Time"
+msgstr "Säästab aega"
+
+#: app/templates/app/index.html:99
+msgid ""
+"No waste of time. Stop spending hours for manual calling. Use your time for "
+"improving the services, quality and make extra sales."
+msgstr ""
+"Lõpp tööaja raiskamisele! Lõpeta sadade tundide kulutamine käsitsi "
+"helistamisele. Selle asemel kasuta oma aega pigem teenuste, kvaliteedi ja "
+"müügi edendamiseks."
+
 #: app/templates/app/rejected.html:8
 msgid "Thank you for letting us know"
 msgstr "Tänan teada andmast"
@@ -163,9 +206,17 @@ msgstr "Tänan teada andmast"
 msgid "This way we can start searching for other guides for this job"
 msgstr "Nii saame hakata teisi giide sellele tuurile otsima"
 
-#: app/templates/app/respond.html:19
+#: app/templates/app/respond.html:16
 msgid "will you accept this job"
 msgstr "kas võtate töö vastu"
+
+#: app/templates/app/respond.html:25 app/views.py:210
+msgid "yes"
+msgstr "jah"
+
+#: app/templates/app/respond.html:28
+msgid "no"
+msgstr "ei"
 
 #: app/templates/app/tour_content_email.html:49
 #: app/templates/app/tour_content_with_contact.html:5
@@ -195,12 +246,12 @@ msgstr "Giidi e-post"
 msgid "Guide phone nr."
 msgstr "Giidi telefoninumber"
 
-#: app/templates/app/tour_list.html:6 app/templates/app/tour_list.html.py:20
+#: app/templates/app/tour_list.html:6 app/templates/app/tour_list.html.py:21
 #: app/templates/site_base.html:58
 msgid "Tours"
 msgstr "Tuurid"
 
-#: app/templates/app/tour_list.html:24
+#: app/templates/app/tour_list.html:25
 msgid "Filter"
 msgstr "Filtreeri"
 
@@ -235,6 +286,12 @@ msgstr "kuni"
 #: app/views.py:30
 msgid "Please respond"
 msgstr "Palun vastake"
+
+#: app/views.py:40
+#, fuzzy
+#| msgid "Tour Details"
+msgid "Tour details"
+msgstr "Tuuri üksikasjad"
 
 #: app/views.py:74
 msgid "Some group"

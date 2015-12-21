@@ -17,10 +17,12 @@
 
 {% block body %}
     <a href="/tour/add" class="btn btn-info" role="button">{% trans "Add Tour" %}</a>
-    <h2>{% trans "Tours" %}</h2>
-    {% render_table table %}
-    <form action="" method="get">
-        {{ filter.form.as_p }}
-        <input type="submit" class="btn btn-primary" value="{% trans "Filter" %}">
-    </form>
+    {% if table %}
+        <h2>{% trans "Tours" %}</h2>
+        {% render_table table %}
+        <form action="" method="get">
+            {{ filter.form.as_p }}
+            <input type="submit" class="btn btn-primary" value="{% trans "Filter" %}">
+        </form>
+    {% endif %}
 {% endblock %}
