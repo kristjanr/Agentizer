@@ -9,11 +9,13 @@ from django.template import Context
 from django.template.loader import get_template
 from django.utils.dateparse import parse_datetime
 from django.core.mail import send_mail
+
 from django_filters.views import FilterView
 
 from django_tables2 import RequestConfig, SingleTableView
 
 from django.utils.translation import ugettext as _
+import requests
 
 from app.filters import TourFilter
 from app.forms import TourForm, SignupForm
@@ -23,10 +25,9 @@ from app.tables import TourTable, GuideTourTable
 
 logger = logging.getLogger(__name__)
 
-sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _('Please respond') + ': http://agentizer.com/respond?uid=[uid]'
-
 
 def create_sms_text(company_name, tour):
+    sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _('Please respond') + ': http://agentizer.com/respond?uid=[uid]'
     return sms_text_template % (company_name, tour.start_time.strftime('%Y-%m-%d %H:%M'), tour.end_time.strftime('%Y-%m-%d %H:%M'))
 
 
@@ -60,8 +61,10 @@ def add_or_edit_tour(request, tour_id=None):
             return redirect('add_guides', tour.id)
     elif tour_id:
         tour = get_object_or_404(Tour, id=tour_id, user=request.user)
-        if tour.sent:
+        if tour.accepted:
             return redirect('tour-detail', tour_id)
+        if tour.sent:
+            return redirect('add_guides', tour_id)
         form = TourForm(instance=tour)
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -89,13 +92,18 @@ def add_guides(request, tour_id):
 
     guides_list = Guide.objects.order_by('name')
 
+    guides_sent = tour.guidetour_set.all()
     context = dict(
         sms_text=sms_text,
         guides_list=guides_list,
         tour=tour,
         tour_id=tour.id,
-        user=tour.user
+        user=tour.user,
     )
+    if guides_sent:
+        table = GuideTourTable(guides_sent)
+        RequestConfig(request).configure(table)
+        context['table'] = table
     return render(request, 'app/guides.html', context=context)
 
 
@@ -154,7 +162,6 @@ class TourDetailView(LoginRequiredMixin, DetailView):
     model = Tour
 
     def get_queryset(self):
-        ppp = self.request.LANGUAGE_CODE
         return super().get_queryset().filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):

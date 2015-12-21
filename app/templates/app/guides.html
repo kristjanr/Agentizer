@@ -1,4 +1,6 @@
 {% extends "app/../site_base.html" %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
 {% load i18n %}
 {% block head_title %}
     {% trans "Guides" %}
@@ -11,13 +13,22 @@
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
         }
     </style>
+    <link rel="stylesheet" href="{% static "django_tables2/themes/paleblue/css/screen.css" %}"/>
 {% endblock %}
 
 {% block body %}
     <div class="container">
-        <a href="{% url 'edit_tour' tour.id %}">Back</a>
+        <a href="{% url 'edit_tour' tour.id %}">{% trans "Back" %}</a>
+        {% if table %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>{% trans "Guides the tour invitation was sent to" %}:</h4>
+                    {% render_table table %}
+                </div>
+            </div>
+        {% endif %}
 
-        <h2>{% trans "Please choose guides to send SMS" %}</h2>
+        <h3>{% trans "Please choose guides to send SMS" %}</h3>
 
         <form action="{% url 'send_sms' %}" method="post">
             {% if tour %}
@@ -54,7 +65,7 @@
 
                 <div class="col-xs-6 form-horizontal">
 
-                    <h2>{% trans "Tour Details" %}</h2>
+                    <h3>{% trans "Tour Details" %}</h3>
 
                     {% include "app/tour_content.html" %}
 
