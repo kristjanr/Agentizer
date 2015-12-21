@@ -18,7 +18,7 @@
 
 {% block body %}
     <div class="container">
-        <a href="{% url 'edit_tour' tour.id %}">{% trans "Back" %}</a>
+        <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
         {% if table %}
             <div class="row">
                 <div class="col-xs-12">

@@ -20,6 +20,8 @@
     {% csrf_token %}
     <div class="container">
 
+        <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
+
         <div id="content">
             <h2>{% trans "Please fill out tour information" %}</h2>
 
