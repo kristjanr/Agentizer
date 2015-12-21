@@ -87,6 +87,8 @@ def add_or_edit_tour(request, tour_id=None):
 @login_required
 def add_guides(request, tour_id):
     tour = get_object_or_404(Tour, id=tour_id, user=request.user)
+    if tour.accepted:
+        return redirect('view_tour', tour_id)
 
     sms_text = create_sms_text(tour.user.profile.company_name, tour)
 
@@ -111,6 +113,8 @@ def add_guides(request, tour_id):
 def send_sms(request):
     tour_id = request.POST.get('tour_id')
     tour = get_object_or_404(Tour, id=tour_id, user=request.user)
+    if tour.accepted:
+        return redirect('view_tour', tour_id)
 
     guide_ids = request.POST.getlist('guide_ids')
     if not guide_ids:
