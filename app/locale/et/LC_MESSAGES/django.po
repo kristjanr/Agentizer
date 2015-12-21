@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-20 13:15-0600\n"
+"POT-Creation-Date: 2015-12-20 17:56-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,11 +22,15 @@ msgstr ""
 msgid "Estonian"
 msgstr "Eesti keel"
 
-#: app/filters.py:26 app/tables.py:48
+#: AgentOrganizer/settings.py:118 app/views.py:72
+msgid "English"
+msgstr "Inglise keel"
+
+#: app/filters.py:26 app/tables.py:50
 msgid "SMS sent"
 msgstr "SMS saadetud"
 
-#: app/filters.py:27 app/tables.py:49
+#: app/filters.py:27 app/tables.py:51
 msgid "Guide accepted"
 msgstr "Giid nõus"
 
@@ -34,7 +38,7 @@ msgstr "Giid nõus"
 msgid "Name"
 msgstr "Nimi"
 
-#: app/models.py:8 app/models.py:49 app/templates/app/guides.html:32
+#: app/models.py:8 app/models.py:52 app/templates/app/guides.html:32
 msgid "Phone number"
 msgstr "Telefoninumber"
 
@@ -42,57 +46,74 @@ msgstr "Telefoninumber"
 msgid "E-mail"
 msgstr "E-post"
 
-#: app/models.py:13 app/templates/app/tour_content.html:5
+#: app/models.py:13
 msgid "Reference number"
 msgstr "Viitenumber"
 
-#: app/models.py:14 app/templates/app/tour_content.html:12
+#: app/models.py:14
 msgid "Group size"
 msgstr "Grupi suurus"
 
-#: app/models.py:15 app/templates/app/tour_content.html:19
+#: app/models.py:15
 msgid "Group name"
 msgstr "Grupi nimi"
 
-#: app/models.py:16 app/templates/app/tour_content.html:26
+#: app/models.py:16
 msgid "Language"
 msgstr "Keel"
 
-#: app/models.py:17 app/templates/app/tour_content.html:33
+#: app/models.py:17
 msgid "Start time"
 msgstr "Algusaeg"
 
-#: app/models.py:18 app/templates/app/tour_content.html:40
+#: app/models.py:18
 msgid "End time"
 msgstr "Lõpuaeg"
 
-#: app/models.py:19 app/templates/app/tour_content.html:47
+#: app/models.py:19
 msgid "Meeting point"
 msgstr "Kohtumispunkt"
 
-#: app/models.py:20 app/templates/app/tour_content.html:54
+#: app/models.py:20
 msgid "Ending point"
 msgstr "Lõpupunkt"
 
-#: app/models.py:21 app/templates/app/tour_content.html:61
+#: app/models.py:21
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: app/models.py:22 app/models.py:50
+#: app/models.py:22 app/models.py:53
 msgid "User"
 msgstr "Kasutaja"
 
-#: app/models.py:43
+#: app/models.py:46
 msgid "Seen"
 msgstr "Nähtud"
 
-#: app/models.py:44
+#: app/models.py:47
 msgid "Answer"
 msgstr "Vastus"
 
-#: app/models.py:48
+#: app/models.py:51
 msgid "Company name"
 msgstr "Firma nimi"
+
+#: app/templates/app/accepted.html:11
+msgid "you have accepted the tour"
+msgstr "aktsepteerisid tuuri"
+
+#: app/templates/app/accepted.html:14 app/templates/app/guides.html:57
+#: app/templates/app/respond.html:12
+msgid "Tour Details"
+msgstr "Tuuri üksikasjad"
+
+#: app/templates/app/accepted.html:18
+msgid "These details have been sent to your e-mail"
+msgstr "Need andmed saadeti teie e-posti aadressile"
+
+#: app/templates/app/accepted.html:21
+msgid "Sorry, somebody else already accepted the tour"
+msgstr "Keegi teine juba aktsepteeris tuuri"
 
 #: app/templates/app/add_tour.html:5 app/templates/app/tour_list.html:19
 msgid "Add Tour"
@@ -108,7 +129,7 @@ msgstr "Salvesta"
 
 #: app/templates/app/add_tour.html:47
 msgid "Next"
-msgstr "Edasi"
+msgstr "Järgmine"
 
 #: app/templates/app/guides.html:4
 msgid "Guides"
@@ -122,18 +143,62 @@ msgstr "Palun valige giidid, kellele saata SMS"
 msgid "Send SMS to selected"
 msgstr "Saada valitutele SMS"
 
-#: app/templates/app/guides.html:57
-msgid "Tour Details"
-msgstr "Tuuri üksikasjad"
-
 #: app/templates/app/guides.html:64
 msgid "SMS which will be sent to selected tour guides"
 msgstr "SMS, mis saadetakse valitud giididele"
+
+#: app/templates/app/rejected.html:8
+msgid "Thank you for letting us know"
+msgstr "Tänan teada andmast"
+
+#: app/templates/app/rejected.html:9
+msgid "This way we can start searching for other guides for this job"
+msgstr "Nii saame hakata teisi giide sellele tuurile otsima"
+
+#: app/templates/app/respond.html:19
+msgid "will you accept this job"
+msgstr "kas võtate töö vastu"
+
+#: app/templates/app/tour_content_email.html:49
+#: app/templates/app/tour_content_with_contact.html:5
+msgid "Hiring company"
+msgstr "Palkav firma"
+
+#: app/templates/app/tour_content_email.html:54
+#: app/templates/app/tour_content_with_contact.html:12
+msgid "Hiring contact person"
+msgstr "Kontaktisik"
+
+#: app/templates/app/tour_content_email.html:59
+#: app/templates/app/tour_content_with_contact.html:19
+msgid "Hiring contact e-mail"
+msgstr "Kontaktisiku e-post"
+
+#: app/templates/app/tour_content_email.html:64
+#: app/templates/app/tour_content_with_contact.html:26
+msgid "Hiring contact phone nr."
+msgstr "Kontaktisiku telefoninumber"
+
+#: app/templates/app/tour_content_email.html:68
+msgid "Guide e-mail"
+msgstr "Giidi e-post"
+
+#: app/templates/app/tour_content_email.html:73
+msgid "Guide phone nr."
+msgstr "Giidi telefoninumber"
+
+#: app/templates/app/tour_detail.html:92
+msgid "Guides the tour invitation was sent to"
+msgstr "Giidid, kellele pakkumine saadeti"
 
 #: app/templates/app/tour_list.html:6 app/templates/app/tour_list.html.py:20
 #: app/templates/site_base.html:58
 msgid "Tours"
 msgstr "Tuurid"
+
+#: app/templates/app/tour_list.html:24
+msgid "Filter"
+msgstr "Filtreeri"
 
 #: app/templates/site_base.html:51 app/templates/site_base.html.py:73
 msgid "We offer"
@@ -171,10 +236,6 @@ msgstr "Palun vastake"
 msgid "Some group"
 msgstr "Mingi grupp"
 
-#: app/views.py:72
-msgid "English"
-msgstr "Inglise keel"
-
 #: app/views.py:75
 msgid "Tervis spa"
 msgstr "Tervis spaa"
@@ -186,3 +247,12 @@ msgstr "Raekoja plats"
 #: app/views.py:77
 msgid "Walking tour in Tallinn old town"
 msgstr "Jalutamine Tallinna vanalinnas"
+
+#~ msgid "Previous"
+#~ msgstr "Eelmine"
+
+#~ msgid "Page %(current)s of %(total)s"
+#~ msgstr "%(current)s lehekülg %(total)s-st"
+
+#~ msgid "%(count)s of %(total)s"
+#~ msgstr "%(count)s kirjet %(total)s"

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 
 class Guide(models.Model):
@@ -35,6 +35,9 @@ class Tour(models.Model):
         else:
             return False
 
+    class Meta:
+        verbose_name = 'stability_dashboard'
+        verbose_name_plural = 'stability_dashboard'
 
 class GuideTour(models.Model):
     uid = models.CharField(unique=True, max_length=8, default=None)

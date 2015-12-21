@@ -51,7 +51,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -59,8 +59,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'account.middleware.LocaleMiddleware',
     'account.middleware.TimezoneMiddleware',
+    'account.middleware.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'AgentOrganizer.urls'
@@ -104,7 +104,7 @@ DATABASES['default'] = dj_database_url.config()
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'et'
+# LANGUAGE_CODE = 'et'
 # TIME_ZONE = 'Europe/Tallinn'
 USE_I18N = True
 USE_L10N = False
@@ -115,7 +115,7 @@ SHORT_DATETIME_FORMAT = 'Y-m-d H:i'
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'app/locale'),)
 LANGUAGES = (
     ('et', _('Estonian')),
-    # ('en', _('English')),
+    ('en', _('English')),
 )
 
 # Enable Connection Pooling (if desired)

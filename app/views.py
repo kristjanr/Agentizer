@@ -125,8 +125,8 @@ def send_sms(request):
             'to': guide.phone_number,
         }
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
-        # r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
-        # logger.warning('post response: %s', r.content)
+        r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
+        logger.warning('post response: %s', r.content)
     return redirect('tour-detail', tour_id)
 
 

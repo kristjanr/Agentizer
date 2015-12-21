@@ -4,7 +4,7 @@ from django import forms
 import account.forms
 
 from app.models import Tour
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 
 class SignupForm(account.forms.SignupForm):

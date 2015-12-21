@@ -1,74 +1,76 @@
+{% load tour_extras %}
+{% load i18n %}
 <html>
 <table border="1">
     <tr>
-        <td>Ref number</td>
+        <td>{{ 'ref_number' | verbose_name}}</td>
         <td>{{ tour.ref_number }}</td>
     </tr>
     <tr>
-        <td>Group size</td>
+        <td>{{ 'group_size' | verbose_name}}</td>
         <td>{{ tour.group_size }}</td>
     </tr>
     <tr>
-        <td>Group name</td>
+        <td>{{ 'group_name' | verbose_name}}</td>
         <td>{{ tour.group_name }}</td>
 
     </tr>
     <tr>
-        <td>Language</td>
+        <td>{{ 'language' | verbose_name}}</td>
         <td>{{ tour.language }}</td>
 
     </tr>
     <tr>
-        <td>Start Time</td>
+        <td>{{ 'start_time' | verbose_name}}</td>
         <td>{{ tour.start_time }}</td>
 
     </tr>
     <tr>
-        <td>End Time</td>
+        <td>{{ 'end_time' | verbose_name}}</td>
         <td>{{ tour.end_time }}</td>
 
     </tr>
     <tr>
-        <td>Meeting point</td>
+        <td>{{ 'meeting_point' | verbose_name}}</td>
         <td>{{ tour.meeting_point }}</td>
 
     </tr>
     <tr>
-        <td>Ending point</td>
+        <td>{{ 'ending_point' | verbose_name}}</td>
         <td>{{ tour.ending_point }}</td>
 
     </tr>
     <tr>
-        <td>Tour description</td>
+        <td>{{ 'description' | verbose_name}}</td>
         <td>{{ tour.description }}</td>
 
     </tr>
     <tr>
-        <td>Hiring company</td>
+        <td>{% trans "Hiring company" %}</td>
         <td>{{ user.profile.company_name }}</td>
 
     </tr>
     <tr>
-        <td>Hiring contact person</td>
+        <td>{% trans "Hiring contact person" %}</td>
         <td>{{ user.username }}</td>
 
     </tr>
     <tr>
-        <td>Hiring contact e-mail</td>
+        <td>{% trans "Hiring contact e-mail" %}</td>
         <td>{{ user.email }}</td>
 
     </tr>
     <tr>
-        <td>Hiring contact phone nr.</td>
+        <td>{% trans "Hiring contact phone nr." %}</td>
         <td>{{ user.profile.phone_number }}</td>
     </tr>
     <tr>
-        <td>Guide e-mail</td>
+        <td>{% trans "Guide e-mail" %}</td>
         <td>{{ guide.email }}</td>
 
     </tr>
     <tr>
-        <td>Guide phone nr.</td>
+        <td>{% trans "Guide phone nr." %}</td>
         <td>{{ guide.phone_number }}</td>
     </tr>
 </table>

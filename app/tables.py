@@ -1,7 +1,8 @@
 from django.utils.safestring import mark_safe
 from django_tables2 import tables
 import django_tables2
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
+from django_tables2.utils import cached_property
 
 from app.models import Tour, GuideTour
 
@@ -43,7 +44,8 @@ class TourTable(tables.Table):
             'description',
             'user',
         )
-        attrs = {"class": "paleblue"}
+        attrs = {'class': 'paleblue'}
+        verbose_name_plural = 'stability_dashboard'
 
-    sent = django_tables2.BooleanColumn(orderable=False, verbose_name=_("SMS sent"))
-    accepted = django_tables2.BooleanColumn(null=True, orderable=False, verbose_name=_("Guide accepted"))
+    sent = django_tables2.BooleanColumn(orderable=False, verbose_name=_('SMS sent'))
+    accepted = django_tables2.BooleanColumn(null=True, orderable=False, verbose_name=_('Guide accepted'))

@@ -1,28 +1,29 @@
 {% extends "app/tour_content.html" %}
+{% load i18n %}
 {% block extradetails %}
     <div class="row">
-        <label class="col-sm-4 control-label">Hiring company</label>
+        <label class="col-sm-4 control-label">{% trans "Hiring company" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ user.profile.company_name }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Hiring contact person</label>
+        <label class="col-sm-4 control-label">{% trans "Hiring contact person" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ user.username }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Hiring contact e-mail</label>
+        <label class="col-sm-4 control-label">{% trans "Hiring contact e-mail" %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ user.email }}</p>
         </div>
     </div>
     <div class="row">
-        <label class="col-sm-4 control-label">Hiring contact phone nr.</label>
+        <label class="col-sm-4 control-label">{% trans "Hiring contact phone nr." %}</label>
 
         <div class="col-sm-8">
             <p class="form-control-static">{{ user.profile.phone_number }}</p>

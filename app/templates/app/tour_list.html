@@ -21,6 +21,6 @@
     {% render_table table %}
     <form action="" method="get">
         {{ filter.form.as_p }}
-        <input type="submit" />
+        <input type="submit" class="btn btn-primary" value="{% trans "Filter" %}">
     </form>
 {% endblock %}
