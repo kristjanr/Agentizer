@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-26 13:08-0600\n"
+"POT-Creation-Date: 2015-12-26 14:21-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,67 +44,67 @@ msgstr "Tuuri üksikasjad"
 msgid "yes"
 msgstr "jah"
 
-#: app/models.py:8 app/templates/app/guidetours_add.html:42
+#: app/models.py:7 app/templates/app/guidetours_add.html:42
 msgid "Name"
 msgstr "Nimi"
 
-#: app/models.py:9 app/models.py:57 app/templates/app/guidetours_add.html:43
+#: app/models.py:8 app/models.py:59 app/templates/app/guidetours_add.html:43
 msgid "Phone number"
 msgstr "Telefoninumber"
 
-#: app/models.py:10 app/templates/app/guidetours_add.html:44
+#: app/models.py:9 app/templates/app/guidetours_add.html:44
 msgid "E-mail"
 msgstr "E-post"
 
-#: app/models.py:17
+#: app/models.py:16
 msgid "Reference number"
 msgstr "Viitenumber"
 
-#: app/models.py:18
+#: app/models.py:17
 msgid "Group size"
 msgstr "Grupi suurus"
 
-#: app/models.py:19
+#: app/models.py:18
 msgid "Group name"
 msgstr "Grupi nimi"
 
-#: app/models.py:20
+#: app/models.py:19
 msgid "Language"
 msgstr "Keel"
 
-#: app/models.py:21
+#: app/models.py:20
 msgid "Start time"
 msgstr "Algusaeg"
 
-#: app/models.py:22
+#: app/models.py:21
 msgid "End time"
 msgstr "Lõpuaeg"
 
-#: app/models.py:23
+#: app/models.py:22
 msgid "Meeting point"
 msgstr "Kohtumispunkt"
 
-#: app/models.py:24
+#: app/models.py:23
 msgid "Ending point"
 msgstr "Lõpupunkt"
 
-#: app/models.py:25
+#: app/models.py:24
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: app/models.py:26 app/models.py:58
+#: app/models.py:25 app/models.py:60
 msgid "User"
 msgstr "Kasutaja"
 
-#: app/models.py:51
+#: app/models.py:53
 msgid "Seen"
 msgstr "Nähtud"
 
-#: app/models.py:52
+#: app/models.py:54
 msgid "Answer"
 msgstr "Vastus"
 
-#: app/models.py:56
+#: app/models.py:58
 msgid "Company name"
 msgstr "Firma nimi"
 
@@ -124,8 +124,9 @@ msgstr "Keegi teine juba aktsepteeris selle tuuri"
 msgid "Add Tour"
 msgstr "Lisa tuur"
 
-#: app/templates/app/add_tour.html:23 app/templates/app/guide_form.html:23
-#: app/templates/app/guides.html:23
+#: app/templates/app/add_tour.html:23
+#: app/templates/app/guide_confirm_delete.html:23
+#: app/templates/app/guide_form.html:22 app/templates/app/guides.html:23
 msgid "Back"
 msgstr "Tagasi"
 
@@ -133,7 +134,7 @@ msgstr "Tagasi"
 msgid "Please fill out tour information"
 msgstr "Palun kirjutage tuuri info"
 
-#: app/templates/app/add_tour.html:48 app/templates/app/guide_form.html:48
+#: app/templates/app/add_tour.html:48 app/templates/app/guide_form.html:49
 #: app/views.py:54
 msgid "Save"
 msgstr "Salvesta"
@@ -143,6 +144,20 @@ msgstr "Salvesta"
 msgid "Next"
 msgstr "Järgmine"
 
+#: app/templates/app/guide_confirm_delete.html:5
+#, fuzzy
+#| msgid "Select guides"
+msgid "Delete Guide"
+msgstr "Vali giidid"
+
+#: app/templates/app/guide_confirm_delete.html:27
+msgid "Are you sure you want to delete "
+msgstr "Kas olete kindel, et soovite kustutada "
+
+#: app/templates/app/guide_confirm_delete.html:28
+msgid "Confirm"
+msgstr "Nõus"
+
 #: app/templates/app/guide_form.html:5 app/templates/app/guide_list.html:19
 msgid "Add Guide"
 msgstr "Lisa Giid"
@@ -150,6 +165,10 @@ msgstr "Lisa Giid"
 #: app/templates/app/guide_form.html:26
 msgid "Please fill out guide information"
 msgstr "Palun kirjutage giidi andmed"
+
+#: app/templates/app/guide_form.html:55
+msgid "Delete"
+msgstr "Kustuta"
 
 #: app/templates/app/guide_list.html:6 app/templates/app/guide_list.html:21
 msgid "All Guides"

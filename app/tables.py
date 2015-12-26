@@ -9,7 +9,7 @@ from app.models import Tour, GuideTour, Guide
 class GuideTable(tables.Table):
     def render_name(self, record):
         return mark_safe('<a href=%s>%s</a>' % (
-            record.id,
+            record.get_absolute_url(),
             record.name
         ))
 
@@ -52,7 +52,7 @@ class GuideTourTable(tables.Table):
 class TourTable(tables.Table):
     def render_ref_number(self, record):
         return mark_safe('<a href=%s>%s</a>' % (
-            record.id,
+            record.get_absolute_url(),
             record.ref_number
         ))
 

@@ -1,0 +1,33 @@
+{% extends "app/../site_base.html" %}
+{% load account_tags %}
+{% load i18n %}
+{% block head_title %}
+    {% trans "Delete Guide" %}
+{% endblock %}
+{% block extrahead %}
+    <style xmlns="http://www.w3.org/1999/html">
+        body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+    {{ form.media }}
+
+{% endblock %}
+
+{% block body %}
+
+    {% csrf_token %}
+    <div class="container">
+
+        <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
+
+        <div id="content">
+            <form action="" method="post">{% csrf_token %}
+                <h3>{% trans "Are you sure you want to delete " %}{{ object.name }} ?</h3>
+                <input type="submit" class="btn btn-danger" value="{% trans "Confirm" %}">
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

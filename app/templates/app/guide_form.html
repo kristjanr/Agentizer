@@ -17,13 +17,14 @@
 
 {% block body %}
 
-    {% csrf_token %}
     <div class="container">
 
-        <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
+    <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
 
-        <div id="content">
+    <div id="content">
+        <div class="row">
             <h3>{% trans "Please fill out guide information" %}</h3>
+
 
             <form method="post"><br>
                 {% csrf_token %}
@@ -49,7 +50,11 @@
             </form>
 
         </div>
-        <!-- /.row -->
+        <div class="row">
+            <form action="{% url 'guide-delete' object.id %}" method="get"><br>
+                <input type="submit" class="btn btn-danger" value="{% trans "Delete" %}">
+            </form>
+        </div>
 
     </div>
 {% endblock %}
