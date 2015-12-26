@@ -16,45 +16,35 @@
 {% endblock %}
 
 {% block body %}
-
-    <div class="container">
-
     <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
+    <h3>{% trans "Please fill out guide information" %}</h3>
+    <form method="post"><br>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="col-xs-12">
+                <div class="control-label col-xs-2">
+                    {{ field.label_tag }}
+                </div>
+                <div class="col-xs-8">
+                    {{ field }}
+                </div>
+                <div class="col-xs-2">
+                    {{ field.errors }}
+                </div>
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
 
-    <div id="content">
-        <div class="row">
-            <h3>{% trans "Please fill out guide information" %}</h3>
+        <input type="submit" class="btn btn-primary" value="{% trans "Save" %}" name="submit">
+    </form>
 
+    {% if object.id %}
+        <form action="{% url 'guide-delete' object.id %}" method="get"><br>
+            <input type="submit" class="btn btn-danger" value="{% trans "Delete" %}">
+        </form>
+    {% endif %}
 
-            <form method="post"><br>
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-                {% for field in form %}
-                    <div class="col-xs-12">
-                        <div class="control-label col-xs-2">
-                            {{ field.label_tag }}
-                        </div>
-                        <div class="col-xs-8">
-                            {{ field }}
-                        </div>
-                        <div class="col-xs-2">
-                            {{ field.errors }}
-                        </div>
-                        {% if field.help_text %}
-                            <p class="help">{{ field.help_text|safe }}</p>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-
-                <input type="submit" class="btn btn-primary" value="{% trans "Save" %}" name="submit">
-            </form>
-
-        </div>
-        <div class="row">
-            <form action="{% url 'guide-delete' object.id %}" method="get"><br>
-                <input type="submit" class="btn btn-danger" value="{% trans "Delete" %}">
-            </form>
-        </div>
-
-    </div>
 {% endblock %}
