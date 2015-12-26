@@ -2,13 +2,15 @@ import logging
 from hashlib import md5
 
 import account.views
+from django.contrib.admin.views.decorators import staff_member_required
+
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template import Context
-from django.template.loader import get_template
+
 from django.utils.dateparse import parse_datetime
-from django.core.mail import send_mail
 
 from django_filters.views import FilterView
 
@@ -19,9 +21,8 @@ import requests
 
 from app.filters import TourFilter
 from app.forms import TourForm, SignupForm
-from AgentOrganizer.settings import DEFAULT_FROM_EMAIL
 from app.models import Guide, GuideTour, Tour, Profile
-from app.tables import TourTable, GuideTourTable
+from app.tables import TourTable, GuideTourTable, GuideTable
 
 logger = logging.getLogger(__name__)
 
@@ -35,12 +36,7 @@ def md5_hash(s):
     return md5(s.encode('utf-8')).hexdigest()[:8]
 
 
-def send_emails(context):
-    tour_info = get_template('app/tour_content_email.html').render(Context(context))
-    send_mail(_('Tour details'), tour_info, DEFAULT_FROM_EMAIL, [context['guide'].email, context['user'].email], html_message=tour_info)
-
-
-@login_required
+@staff_member_required
 def add_or_edit_tour(request, tour_id=None):
     if not request.user.is_staff:
         return redirect('/')
@@ -84,7 +80,7 @@ def add_or_edit_tour(request, tour_id=None):
     return render(request, 'app/add_tour.html', {'form': form})
 
 
-@login_required
+@staff_member_required
 def add_guides(request, tour_id):
     tour = get_object_or_404(Tour, id=tour_id, user=request.user)
     if tour.accepted:
@@ -106,10 +102,10 @@ def add_guides(request, tour_id):
         table = GuideTourTable(guidetours_sent)
         RequestConfig(request).configure(table)
         context['table'] = table
-    return render(request, 'app/guides_add.html', context=context)
+    return render(request, 'app/guidetours_add.html', context=context)
 
 
-@login_required
+@staff_member_required
 def send_sms(request):
     tour_id = request.POST.get('tour_id')
     tour = get_object_or_404(Tour, id=tour_id, user=request.user)
@@ -142,40 +138,6 @@ def send_sms(request):
     return redirect('add_guides', tour_id)
 
 
-class LoginRequiredMixin(object):
-    @classmethod
-    def as_view(cls, **initkwargs):
-        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
-        return login_required(view)
-
-
-class FilterTableView(FilterView, SingleTableView):
-    def get_table_data(self):
-        f = TourFilter(self.request.GET, queryset=super().get_queryset().filter(user=self.request.user))
-        return f
-
-
-class TourListView(LoginRequiredMixin, FilterTableView):
-    model = Tour
-    table_class = TourTable
-    table_pagination = {"per_page": 20}
-    filterset_class = TourFilter
-
-
-class TourDetailView(LoginRequiredMixin, DetailView):
-    model = Tour
-
-    def get_queryset(self):
-        return super().get_queryset().filter(user=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        table = GuideTourTable(self.object.guidetour_set.all())
-        RequestConfig(self.request).configure(table)
-        context['table'] = table
-        return context
-
-
 class SignupView(account.views.SignupView):
     form_class = SignupForm
 
@@ -189,42 +151,65 @@ class SignupView(account.views.SignupView):
         profile.save()
 
 
-def respond(request):
-    uid = request.GET['uid']
-    guide_tour = GuideTour.objects.get(uid=uid)
-    guide_tour.seen = True
-    guide_tour.save()
-    for gt in guide_tour.tour.guidetour_set.all():
-        if gt != guide_tour and gt.answer:
-            return render(request, 'app/accepted.html')
-
-    context = dict(guide_tour=guide_tour)
-    return render(request, 'app/respond.html', context=context)
+class StaffMemberRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(StaffMemberRequiredMixin, cls).as_view(**initkwargs)
+        return staff_member_required(view)
 
 
-def answer(request):
-    uid = request.POST['uid']
-    guide_tour = GuideTour.objects.get(uid=uid)
+class FilterTableView(FilterView, SingleTableView):
+    def get_table_data(self):
+        f = TourFilter(self.request.GET, queryset=super().get_queryset().filter(user=self.request.user))
+        return f
 
-    # Check if someone else has already accepted the tour
-    for gt in guide_tour.tour.guidetour_set.all():
-        if gt != guide_tour and gt.answer:
-            return render(request, 'app/accepted.html')
 
-    guide_answer = True if request.POST['answer'] == _('yes') else False
-    context = dict(tour=guide_tour.tour, guide=guide_tour.guide, user=guide_tour.tour.user)
+class TourListView(StaffMemberRequiredMixin, FilterTableView):
+    model = Tour
+    table_class = TourTable
+    table_pagination = {"per_page": 20}
+    filterset_class = TourFilter
 
-    # Do not allow to change the answer from yes to no
-    if guide_tour.answer:
-        return render(request, 'app/accepted.html', context=context)
 
-    guide_tour.answer = guide_answer
-    guide_tour.save()
+class TourDetailView(StaffMemberRequiredMixin, DetailView):
+    model = Tour
 
-    # The guide answered no
-    if not guide_tour.answer:
-        return render(request, 'app/rejected.html')
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
 
-    # The guide accepted the Tour
-    send_emails(context)
-    return render(request, 'app/accepted.html', context=context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        table = GuideTourTable(self.object.guidetour_set.all())
+        RequestConfig(self.request).configure(table)
+        context['table'] = table
+        return context
+
+
+class GuideListView(StaffMemberRequiredMixin, SingleTableView):
+    model = Guide
+    table_class = GuideTable
+
+
+class GuideCreateView(StaffMemberRequiredMixin, CreateView):
+    model = Guide
+    fields = [
+        'name',
+        'phone_number',
+        'email',
+    ]
+    success_url = reverse_lazy('guides')
+
+
+class GuideUpdate(StaffMemberRequiredMixin, UpdateView):
+    model = Guide
+    fields = [
+        'name',
+        'phone_number',
+        'email',
+    ]
+    success_url = reverse_lazy('guides')
+
+
+class GuideDelete(StaffMemberRequiredMixin, DeleteView):
+    model = Guide
+    success_url = reverse_lazy('guides')

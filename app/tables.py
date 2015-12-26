@@ -2,9 +2,28 @@ from django.utils.safestring import mark_safe
 from django_tables2 import tables
 import django_tables2
 from django.utils.translation import ugettext_lazy as _
-from django_tables2.utils import cached_property
 
-from app.models import Tour, GuideTour
+from app.models import Tour, GuideTour, Guide
+
+
+class GuideTable(tables.Table):
+    def render_name(self, record):
+        return mark_safe('<a href=%s>%s</a>' % (
+            record.id,
+            record.name
+        ))
+
+    class Meta:
+        model = Guide
+        exclude = (
+            'id',
+        )
+        sequence = (
+            'name',
+            'phone_number',
+            'email',
+        )
+        attrs = {"class": "paleblue"}
 
 
 class GuideTourTable(tables.Table):

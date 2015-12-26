@@ -3,7 +3,7 @@
 {% load render_table from django_tables2 %}
 {% load i18n %}
 {% block head_title %}
-    {% trans "Tours" %}
+    {% trans "All Guides" %}
 {% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
@@ -16,13 +16,9 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{% url 'add_tour' %}" class="btn btn-info" role="button">{% trans "Add Tour" %}</a>
+    <a href="{% url 'guide-add' %}" class="btn btn-info" role="button">{% trans "Add Guide" %}</a>
     {% if table %}
-        <h2>{% trans "Tours" %}</h2>
+        <h2>{% trans "All Guides" %}</h2>
         {% render_table table %}
-        <form action="" method="get">
-            {{ filter.form.as_p }}
-            <input type="submit" class="btn btn-primary" value="{% trans "Filter" %}">
-        </form>
     {% endif %}
 {% endblock %}
