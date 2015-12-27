@@ -3,7 +3,7 @@ from datetimewidget.widgets import DateTimeWidget
 from django import forms
 import account.forms
 
-from app.models import Tour
+from app.models import Tour, Guide
 
 
 class SignupForm(account.forms.SignupForm):
@@ -45,3 +45,13 @@ class TourForm(MyForm):
             'start_time': widget,
             'end_time': widget
         }
+
+
+class GuideForm(MyForm):
+    class Meta:
+        model = Guide
+        fields = [
+            'name',
+            'phone_number',
+            'email',
+        ]

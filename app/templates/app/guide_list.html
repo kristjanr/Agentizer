@@ -2,9 +2,7 @@
 {% load staticfiles %}
 {% load render_table from django_tables2 %}
 {% load i18n %}
-{% block head_title %}
-    {% trans "All Guides" %}
-{% endblock %}
+{% block head_title %}{% trans "All Guides" %}{% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
         body {
@@ -16,9 +14,12 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{% url 'guide-add' %}" class="btn btn-info" role="button">{% trans "Add Guide" %}</a>
-    {% if table %}
-        <h2>{% trans "All Guides" %}</h2>
-        {% render_table table %}
-    {% endif %}
+    <div class="container">
+        <div id="content">
+            <h3>{% trans "All Guides" %}</h3>
+            {% if table %}
+                {% render_table table %}
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

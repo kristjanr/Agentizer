@@ -1,6 +1,5 @@
 {% extends "theme_bootstrap/base.html" %}
 {% load staticfiles %}
-{% load account_tags %}
 {% load i18n %}
 
 {% block extra_head_base %}
@@ -13,6 +12,7 @@
 
       ga('create', 'UA-70848099-1', 'auto');
       ga('send', 'pageview');
+
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -34,6 +34,7 @@
     {% endblock %}
     {% block extrahead %}{% endblock %}
 {% endblock %}
+{% block site_brand %}<a class="navbar-brand" href="{% url "home" %}">Agentizer</a>{% endblock %}
 
 {% block body_base %}
     <section id="content_body">
@@ -46,34 +47,29 @@
 {% endblock %}
 
 {% block nav %}
-    <ul class="nav navbar-nav nav-right">
+    <ul class="nav navbar-nav ">
+        {% if user.is_staff %}
             <li>
-                <a href="#weoffer">{% trans "We offer" %}</a>
+                <a href="{% url 'add_tour' %}">{% trans "Add Tour" %}</a>
             </li>
             <li>
-                <a href="mailto:hello@agentizer.com">{% trans "Contact" %}</a>
-            </li>
-        {% if user.is_authenticated and user.is_staff %}
-            <li>
-                <a href="/tour">{% trans "Tours" %}</a>
+                <a href="/tour">{% trans "Your Tours" %}</a>
             </li>
             <li>
-                <a href="/guide">{% trans "Guides" %}</a>
+                <a href="{% url 'guide-add' %}">{% trans "Add Guide" %}</a>
+            </li>
+            <li>
+                <a href="/guide">{% trans "All Guides" %}</a>
             </li>
         {% endif %}
     </ul>
 {% endblock %}
-
 {% block footer %}
     <div class="row">
         <div class="col-lg-12">
             <ul class="list-inline">
                 <li>
                     <a href="#">{% trans "Home" %}</a>
-                </li>
-                <li class="footer-menu-divider">&sdot;</li>
-                <li>
-                    <a href="#weoffer">{% trans "We offer" %}</a>
                 </li>
                 <li class="footer-menu-divider">&sdot;</li>
                 <li>

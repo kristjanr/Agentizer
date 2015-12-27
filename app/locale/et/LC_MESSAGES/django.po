@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-26 14:21-0600\n"
+"POT-Creation-Date: 2015-12-27 17:11-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,20 +22,20 @@ msgstr ""
 msgid "Estonian"
 msgstr "Eesti keel"
 
-#: AgentOrganizer/settings.py:118 app/views.py:71
+#: AgentOrganizer/settings.py:118 app/views.py:66
 msgid "English"
 msgstr "Inglise keel"
 
-#: app/filters.py:26 app/tables.py:69
+#: app/filters.py:26 app/tables.py:73
 msgid "SMS sent"
 msgstr "SMS saadetud"
 
-#: app/filters.py:27 app/tables.py:70
+#: app/filters.py:27 app/tables.py:74
 msgid "Guide accepted"
 msgstr "Giid nõus"
 
 #: app/mobile_views.py:12 app/templates/app/accepted.html:14
-#: app/templates/app/guidetours_add.html:17 app/templates/app/respond.html:12
+#: app/templates/app/guidetours_add.html:11 app/templates/app/respond.html:12
 #: app/templates/app/tour_detail.html:8 app/templates/app/tour_detail.html:18
 msgid "Tour details"
 msgstr "Tuuri üksikasjad"
@@ -44,15 +44,15 @@ msgstr "Tuuri üksikasjad"
 msgid "yes"
 msgstr "jah"
 
-#: app/models.py:7 app/templates/app/guidetours_add.html:42
+#: app/models.py:7 app/templates/app/guidetours_add.html:33
 msgid "Name"
 msgstr "Nimi"
 
-#: app/models.py:8 app/models.py:59 app/templates/app/guidetours_add.html:43
+#: app/models.py:8 app/models.py:59 app/templates/app/guidetours_add.html:34
 msgid "Phone number"
 msgstr "Telefoninumber"
 
-#: app/models.py:9 app/templates/app/guidetours_add.html:44
+#: app/models.py:9 app/templates/app/guidetours_add.html:35
 msgid "E-mail"
 msgstr "E-post"
 
@@ -120,107 +120,98 @@ msgstr "Need andmed saadeti teie e-posti aadressile"
 msgid "Someone else already accepted this tour"
 msgstr "Keegi teine juba aktsepteeris selle tuuri"
 
-#: app/templates/app/add_tour.html:5 app/templates/app/tour_list.html:19
+#: app/templates/app/add_tour.html:5 app/templates/app/add_tour.html.py:22
+msgid "Edit Tour"
+msgstr "Muuda tuuri andmeid"
+
+#: app/templates/app/add_tour.html:5 app/templates/app/add_tour.html.py:24
+#: app/templates/site_base.html:53
 msgid "Add Tour"
 msgstr "Lisa tuur"
 
-#: app/templates/app/add_tour.html:23
-#: app/templates/app/guide_confirm_delete.html:23
-#: app/templates/app/guide_form.html:22 app/templates/app/guides.html:23
-msgid "Back"
-msgstr "Tagasi"
-
-#: app/templates/app/add_tour.html:26
-msgid "Please fill out tour information"
-msgstr "Palun kirjutage tuuri info"
-
-#: app/templates/app/add_tour.html:48 app/templates/app/guide_form.html:49
-#: app/views.py:54
+#: app/templates/app/add_tour.html:46 app/templates/app/guide_form.html:45
+#: app/views.py:49
 msgid "Save"
 msgstr "Salvesta"
 
-#: app/templates/app/add_tour.html:49
+#: app/templates/app/add_tour.html:47
 #: app/templates/django_tables2/table.html:63
 msgid "Next"
 msgstr "Järgmine"
 
-#: app/templates/app/guide_confirm_delete.html:5
-#, fuzzy
-#| msgid "Select guides"
+#: app/templates/app/guide_confirm_delete.html:4
 msgid "Delete Guide"
-msgstr "Vali giidid"
+msgstr "Kustuta giid"
 
-#: app/templates/app/guide_confirm_delete.html:27
+#: app/templates/app/guide_confirm_delete.html:21
+msgid "Back"
+msgstr "Tagasi"
+
+#: app/templates/app/guide_confirm_delete.html:25
 msgid "Are you sure you want to delete "
 msgstr "Kas olete kindel, et soovite kustutada "
 
-#: app/templates/app/guide_confirm_delete.html:28
+#: app/templates/app/guide_confirm_delete.html:26
 msgid "Confirm"
 msgstr "Nõus"
 
-#: app/templates/app/guide_form.html:5 app/templates/app/guide_list.html:19
+#: app/templates/app/guide_form.html:4 app/templates/app/guide_form.html:22
+#: app/templates/site_base.html:59
 msgid "Add Guide"
-msgstr "Lisa Giid"
+msgstr "Lisa giid"
 
-#: app/templates/app/guide_form.html:26
-msgid "Please fill out guide information"
-msgstr "Palun kirjutage giidi andmed"
+#: app/templates/app/guide_form.html:20
+msgid "Edit Guide"
+msgstr "Muuda giidi andmeid"
 
-#: app/templates/app/guide_form.html:55
+#: app/templates/app/guide_form.html:50
 msgid "Delete"
 msgstr "Kustuta"
 
-#: app/templates/app/guide_list.html:6 app/templates/app/guide_list.html:21
+#: app/templates/app/guide_list.html:5 app/templates/app/guide_list.html:19
+#: app/templates/site_base.html:62
 msgid "All Guides"
-msgstr "Kõik Giidid"
+msgstr "Kõik giidid"
 
-#: app/templates/app/guides.html:35
+#: app/templates/app/guides.html:34
 msgid "Guides the tour invitation was sent to"
 msgstr "Giidid, kellele pakkumine saadeti"
 
-#: app/templates/app/guidetours_add.html:7
+#: app/templates/app/guidetours_add.html:6
 msgid "Select guides"
 msgstr "Vali giidid"
 
-#: app/templates/app/guidetours_add.html:25
+#: app/templates/app/guidetours_add.html:15
 msgid "SMS which will be sent to selected tour guides"
 msgstr "SMS, mis saadetakse valitud giididele"
 
-#: app/templates/app/guidetours_add.html:31
+#: app/templates/app/guidetours_add.html:22
 msgid "Please choose guides to send SMS"
 msgstr "Palun valige giidid, kellele saata SMS"
 
-#: app/templates/app/guidetours_add.html:59
+#: app/templates/app/guidetours_add.html:50
 msgid "Send SMS to selected"
 msgstr "Saada valitutele SMS"
 
-#: app/templates/app/index.html:21
+#: app/templates/app/index.html:17
 msgid ""
-"A simple online tool for travel agents to get in contact with tour guides "
-"about an upcoming tour"
+"a fast and effective online tool for travel agents for finding a guide for "
+"an upcoming tour"
 msgstr ""
-"Lihtne online tööriist turismiagentuuridele giididega eesoleva tuuri asjus "
-"kontakteerumiseks"
+"kiire ja efektiivne online tööriist, mis aitab reisiagentidel leida tuurile "
+"giidi"
 
-#: app/templates/app/index.html:23
+#: app/templates/app/index.html:47
 msgid ""
 "One time data entry, group messaging and fast responses make it efficient"
 msgstr ""
 "Ühekordne andmete sisestus, lihtne teadete edastamine ja kiired vastused"
 
-#: app/templates/app/index.html:53
-msgid ""
-"Cost-efficient. Clear and simple pricing model. You only pay fixed fee for "
-"every confirmed guide. No signup fee."
-msgstr ""
-"Kuluefektiivne. Selge ja lihtne hinnastamine. Maksate vaid iga kinnitatud "
-"giidi eest. Liitumistasuta."
-
-#: app/templates/app/index.html:74
+#: app/templates/app/index.html:68
 msgid "Fast and Simple"
 msgstr "Lihtne ja kiire"
 
-#: app/templates/app/index.html:76
+#: app/templates/app/index.html:70
 msgid ""
 "Contact all your guides at once and get immediate feedback. Save the time of "
 "your sales force. Be better partner to your guides"
@@ -228,11 +219,11 @@ msgstr ""
 "Kontakteeru kõikide oma giididega koheselt ja saa vastus hetkega. Säästa oma "
 "töötajate aega. Ole parem partner oma giididele"
 
-#: app/templates/app/index.html:97
+#: app/templates/app/index.html:91
 msgid "Saves Time"
 msgstr "Säästab aega"
 
-#: app/templates/app/index.html:99
+#: app/templates/app/index.html:93
 msgid ""
 "No waste of time. Stop spending hours for manual calling. Use your time for "
 "improving the services, quality and make extra sales."
@@ -285,12 +276,12 @@ msgstr "Giidi e-post"
 msgid "Guide phone nr."
 msgstr "Giidi telefoninumber"
 
-#: app/templates/app/tour_list.html:6 app/templates/app/tour_list.html.py:21
-#: app/templates/site_base.html:58
-msgid "Tours"
-msgstr "Tuurid"
+#: app/templates/app/tour_list.html:5 app/templates/app/tour_list.html.py:19
+#: app/templates/site_base.html:56
+msgid "Your Tours"
+msgstr "Sinu tuurid"
 
-#: app/templates/app/tour_list.html:25
+#: app/templates/app/tour_list.html:24
 msgid "Filter"
 msgstr "Filtreeri"
 
@@ -308,54 +299,46 @@ msgstr "Lk: %(current)s - %(total)s-st"
 msgid "%(count)s of %(total)s"
 msgstr "%(count)s kirjet %(total)s-st"
 
-#: app/templates/site_base.html:51 app/templates/site_base.html.py:76
-msgid "We offer"
-msgstr "Meie pakume"
-
-#: app/templates/site_base.html:54 app/templates/site_base.html.py:80
-msgid "Contact"
-msgstr "Kontakt"
-
-#: app/templates/site_base.html:61
-msgid "Guides"
-msgstr "Giidid"
-
 #: app/templates/site_base.html:72
 msgid "Home"
 msgstr "Kodu"
 
-#: app/templates/site_base.html:83
+#: app/templates/site_base.html:76
+msgid "Contact"
+msgstr "Kontakt"
+
+#: app/templates/site_base.html:79
 msgid "Copyright &copy; Agentizer 2015. All Rights Reserved"
 msgstr "Autoriõigus &copy; Agentizer 2015. Kõik õigused kaitstud"
 
-#: app/views.py:31
+#: app/views.py:26
 msgid "offers a job"
 msgstr "pakub tööd"
 
-#: app/views.py:31
+#: app/views.py:26
 msgid "from"
 msgstr "alates"
 
-#: app/views.py:31
+#: app/views.py:26
 msgid "to"
 msgstr "kuni"
 
-#: app/views.py:31
+#: app/views.py:26
 msgid "Please respond"
 msgstr "Palun vastake"
 
-#: app/views.py:70
+#: app/views.py:65
 msgid "Some group"
 msgstr "Mingi grupp"
 
-#: app/views.py:74
+#: app/views.py:69
 msgid "Tervis spa"
 msgstr "Tervis spaa"
 
-#: app/views.py:75
+#: app/views.py:70
 msgid "Town Hall square"
 msgstr "Raekoja plats"
 
-#: app/views.py:76
+#: app/views.py:71
 msgid "Walking tour in Tallinn old town"
 msgstr "Jalutamine Tallinna vanalinnas"

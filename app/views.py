@@ -3,24 +3,19 @@ from hashlib import md5
 
 import account.views
 from django.contrib.admin.views.decorators import staff_member_required
-
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
-
 from django.shortcuts import render, get_object_or_404, redirect
-
 from django.utils.dateparse import parse_datetime
-
 from django_filters.views import FilterView
-
 from django_tables2 import RequestConfig, SingleTableView
 
 from django.utils.translation import ugettext as _
 import requests
 
 from app.filters import TourFilter
-from app.forms import TourForm, SignupForm
+from app.forms import TourForm, SignupForm, GuideForm
 from app.models import Guide, GuideTour, Tour, Profile
 from app.tables import TourTable, GuideTourTable, GuideTable
 
@@ -77,7 +72,7 @@ def add_or_edit_tour(request, tour_id=None):
         )
         form = TourForm(initial=initial)
 
-    return render(request, 'app/add_tour.html', {'form': form})
+    return render(request, 'app/add_tour.html', {'form': form, 'tour_id': tour_id})
 
 
 @staff_member_required
@@ -133,8 +128,8 @@ def send_sms(request):
             'to': guide.phone_number,
         }
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
-        r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
-        logger.warning('post response: %s', r.content)
+        # r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
+        # logger.warning('post response: %s', r.content)
     return redirect('add_guides', tour_id)
 
 
@@ -192,21 +187,13 @@ class GuideListView(StaffMemberRequiredMixin, SingleTableView):
 
 class GuideCreateView(StaffMemberRequiredMixin, CreateView):
     model = Guide
-    fields = [
-        'name',
-        'phone_number',
-        'email',
-    ]
+    form_class = GuideForm
     success_url = reverse_lazy('guides')
 
 
 class GuideUpdate(StaffMemberRequiredMixin, UpdateView):
     model = Guide
-    fields = [
-        'name',
-        'phone_number',
-        'email',
-    ]
+    form_class = GuideForm
     success_url = reverse_lazy('guides')
 
 

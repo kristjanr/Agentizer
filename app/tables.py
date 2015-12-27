@@ -23,6 +23,7 @@ class GuideTable(tables.Table):
             'phone_number',
             'email',
         )
+        order_by = ('name',)
         attrs = {"class": "paleblue"}
 
 
@@ -42,6 +43,8 @@ class GuideTourTable(tables.Table):
             'seen',
             'answer',
         )
+        order_by = ('-seen', 'answer',)
+
         attrs = {"class": "paleblue"}
 
     name = django_tables2.Column(accessor='guide.name')
@@ -63,6 +66,7 @@ class TourTable(tables.Table):
             'description',
             'user',
         )
+        order_by = ('start_time', 'end_time')
         attrs = {'class': 'paleblue'}
         verbose_name_plural = 'stability_dashboard'
 

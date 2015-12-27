@@ -2,7 +2,7 @@
 {% load account_tags %}
 {% load i18n %}
 {% block head_title %}
-    {% trans "Add Tour" %}
+    {% if tour_id %}{% trans "Edit Tour" %}{% else %}{% trans "Add Tour" %}{% endif %}
 {% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
@@ -16,15 +16,13 @@
 {% endblock %}
 
 {% block body %}
-
-    {% csrf_token %}
     <div class="container">
-
-        <input type=button class="btn btn-warning" value="{% trans "Back" %}" onClick="javascript:history.go(-1);">
-
         <div id="content">
-            <h3>{% trans "Please fill out tour information" %}</h3>
-
+            {% if tour_id %}
+                <h3>{% trans "Edit Tour" %}</h3>
+            {% else %}
+                <h3>{% trans "Add Tour" %}</h3>
+            {% endif %}
             <form method="post"><br>
                 {% csrf_token %}
                 {{ form.non_field_errors }}

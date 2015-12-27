@@ -1,9 +1,7 @@
 {% extends "app/../site_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
-{% block head_title %}
-    Main
-{% endblock %}
+{% block head_title %}{% trans "Home" %}{% endblock %}
 {% block extrahead %}
     <link href="{% static 'app/css/landing-page.css' %}" rel="stylesheet">
 {% endblock %}
@@ -16,11 +14,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>Agentizer</h1>
-
-                        <h3>{% trans "A simple online tool for travel agents to get in contact with tour guides about an upcoming tour" %}.</h3>
-
-                        <h3>{% trans "One time data entry, group messaging and fast responses make it efficient" %}.</h3>
+                        <h3>Agentizer - {% trans "a fast and effective online tool for travel agents for finding a guide for an upcoming tour"%}</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
@@ -50,7 +44,7 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Agentizer</h2><br>
 
-                    <p class="lead">{% trans "Cost-efficient. Clear and simple pricing model. You only pay fixed fee for every confirmed guide. No signup fee." %}</p>
+                    <p class="lead">{% trans "One time data entry, group messaging and fast responses make it efficient" %}.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="https://s3-eu-west-1.amazonaws.com/garage48parnu/images/kkkk.png" alt="">
@@ -73,7 +67,7 @@
                     <div class="clearfix"></div>
                     <h2 class="section-heading">{% trans "Fast and Simple" %}</h2>
 
-                    <p class="lead">{% trans "Contact all your guides at once and get immediate feedback. Save the time of your sales force. Be better partner to your guides" %}</p>
+                    <p class="lead">{% trans "Contact all your guides at once and get immediate feedback. Save the time of your sales force. Be better partner to your guides" %}.</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                     <img class="img-responsive" src="https://s3-eu-west-1.amazonaws.com/garage48parnu/images/map.jpg" alt="">

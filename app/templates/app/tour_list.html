@@ -2,9 +2,7 @@
 {% load staticfiles %}
 {% load render_table from django_tables2 %}
 {% load i18n %}
-{% block head_title %}
-    {% trans "Tours" %}
-{% endblock %}
+{% block head_title %}{% trans "Your Tours" %}{% endblock %}
 {% block extrahead %}
     <style xmlns="http://www.w3.org/1999/html">
         body {
@@ -16,13 +14,16 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{% url 'add_tour' %}" class="btn btn-info" role="button">{% trans "Add Tour" %}</a>
-    {% if table %}
-        <h2>{% trans "Tours" %}</h2>
-        {% render_table table %}
-        <form action="" method="get">
-            {{ filter.form.as_p }}
-            <input type="submit" class="btn btn-primary" value="{% trans "Filter" %}">
-        </form>
-    {% endif %}
+    <div class="container">
+        <div id="content">
+            <h3>{% trans "Your Tours" %}</h3>
+            {% if table %}
+                {% render_table table %}
+                <form action="" method="get">
+                    {{ filter.form.as_p }}
+                    <input type="submit" class="btn btn-primary" value="{% trans "Filter" %}">
+                </form>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
