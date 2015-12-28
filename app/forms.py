@@ -4,10 +4,11 @@ from django import forms
 import account.forms
 
 from app.models import Tour, Guide
+from django.utils.translation import ugettext as _
 
 
 class SignupForm(account.forms.SignupForm):
-    company_name = forms.CharField(min_length=3, max_length=100)
+    company_name = forms.CharField(min_length=3, max_length=100, label=_('Company name'))
 
 
 class MyForm(forms.ModelForm):

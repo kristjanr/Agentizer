@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-27 17:49-0600\n"
+"POT-Creation-Date: 2015-12-27 19:08-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,86 @@ msgstr ""
 msgid "Estonian"
 msgstr "Eesti keel"
 
-#: AgentOrganizer/settings.py:118 app/views.py:66
+#: AgentOrganizer/settings.py:118 app/views.py:75
 msgid "English"
 msgstr "Inglise keel"
+
+#: app/account/forms.py:28 app/account/forms.py:108
+msgid "Username"
+msgstr "Kasutajanimi"
+
+#: app/account/forms.py:34 app/account/forms.py:80
+msgid "Password"
+msgstr "Parool"
+
+#: app/account/forms.py:38
+msgid "Password (again)"
+msgstr "Parool (uuesti)"
+
+#: app/account/forms.py:42 app/account/forms.py:123 app/account/forms.py:169
+#: app/account/forms.py:198
+msgid "Email"
+msgstr "E-post"
+
+#: app/account/forms.py:53
+msgid "Usernames can only contain letters, numbers and underscores."
+msgstr "Kasutajanimi saab sisaldada ainult tähti, numbreid ja allkriipse"
+
+#: app/account/forms.py:61
+msgid "This username is already taken. Please choose another."
+msgstr "See kasutajanimi on juba võetud. Palun valige teine."
+
+#: app/account/forms.py:68 app/account/forms.py:218
+msgid "A user is registered with this email address."
+msgstr "Kasutaja on sellise e-posti aadressiga juba registreeritud"
+
+#: app/account/forms.py:73 app/account/forms.py:163 app/account/forms.py:192
+msgid "You must type the same password each time."
+msgstr "Palun sisestage mõlemal korrel sama parool"
+
+#: app/account/forms.py:84
+msgid "Remember Me"
+msgstr "Mäleta mind"
+
+#: app/account/forms.py:97
+msgid "This account is inactive."
+msgstr "See konto ei ole aktiivne."
+
+#: app/account/forms.py:109
+msgid "The username and/or password you specified are not correct."
+msgstr "Sisestatud kasutajanimi ja/või parool ei ole õige."
+
+#: app/account/forms.py:124
+msgid "The email address and/or password you specified are not correct."
+msgstr "Sisestatud e-posti aadress ei ole õige."
+
+#: app/account/forms.py:139
+msgid "Current Password"
+msgstr "Praegune parool"
+
+#: app/account/forms.py:143 app/account/forms.py:181
+msgid "New Password"
+msgstr "Uus parool"
+
+#: app/account/forms.py:147 app/account/forms.py:185
+msgid "New Password (again)"
+msgstr "Uus parool (uuesti)"
+
+#: app/account/forms.py:157
+msgid "Please type your current password."
+msgstr "Palun sisestage oma praegune parool."
+
+#: app/account/forms.py:174
+msgid "Email address can not be found."
+msgstr "E-posti aadressi ei leitud."
+
+#: app/account/forms.py:200
+msgid "Timezone"
+msgstr "Ajavöönd"
+
+#: app/account/forms.py:206 app/models.py:19
+msgid "Language"
+msgstr "Keel"
 
 #: app/filters.py:26 app/tables.py:73
 msgid "Message sent"
@@ -33,6 +110,10 @@ msgstr "Sõnum saadetud"
 #: app/filters.py:27 app/tables.py:74
 msgid "Guide accepted"
 msgstr "Giid nõus"
+
+#: app/forms.py:11 app/models.py:58
+msgid "Company name"
+msgstr "Firma nimi"
 
 #: app/mobile_views.py:12 app/templates/app/accepted.html:14
 #: app/templates/app/respond.html:12 app/templates/app/tour_detail.html:26
@@ -43,15 +124,15 @@ msgstr "Tuuri üksikasjad"
 msgid "yes"
 msgstr "jah"
 
-#: app/models.py:7 app/templates/app/tour_detail.html:62
+#: app/models.py:7 app/templates/app/tour_detail.html:60
 msgid "Name"
 msgstr "Nimi"
 
-#: app/models.py:8 app/models.py:59 app/templates/app/tour_detail.html:63
+#: app/models.py:8 app/models.py:59 app/templates/app/tour_detail.html:61
 msgid "Phone number"
 msgstr "Telefoninumber"
 
-#: app/models.py:9 app/templates/app/tour_detail.html:64
+#: app/models.py:9 app/templates/app/tour_detail.html:62
 msgid "E-mail"
 msgstr "E-post"
 
@@ -66,10 +147,6 @@ msgstr "Grupi suurus"
 #: app/models.py:18
 msgid "Group name"
 msgstr "Grupi nimi"
-
-#: app/models.py:19
-msgid "Language"
-msgstr "Keel"
 
 #: app/models.py:20
 msgid "Start time"
@@ -103,10 +180,6 @@ msgstr "Nähtud"
 msgid "Answer"
 msgstr "Vastus"
 
-#: app/models.py:58
-msgid "Company name"
-msgstr "Firma nimi"
-
 #: app/templates/app/accepted.html:11
 msgid "you have accepted the tour"
 msgstr "aktsepteerisite tuuri"
@@ -124,12 +197,12 @@ msgid "Edit Tour"
 msgstr "Muuda tuuri andmeid"
 
 #: app/templates/app/add_tour.html:5 app/templates/app/add_tour.html.py:24
-#: app/templates/site_base.html:53
+#: app/templates/site_base.html:52
 msgid "Add Tour"
 msgstr "Lisa tuur"
 
 #: app/templates/app/add_tour.html:46 app/templates/app/guide_form.html:45
-#: app/views.py:49
+#: app/views.py:58
 msgid "Save"
 msgstr "Salvesta"
 
@@ -155,7 +228,7 @@ msgid "Confirm"
 msgstr "Nõus"
 
 #: app/templates/app/guide_form.html:4 app/templates/app/guide_form.html:22
-#: app/templates/site_base.html:59
+#: app/templates/site_base.html:58
 msgid "Add Guide"
 msgstr "Lisa giid"
 
@@ -168,15 +241,11 @@ msgid "Delete"
 msgstr "Kustuta"
 
 #: app/templates/app/guide_list.html:5 app/templates/app/guide_list.html:19
-#: app/templates/site_base.html:62
+#: app/templates/site_base.html:61
 msgid "All Guides"
 msgstr "Kõik giidid"
 
-#: app/templates/app/guides.html:34 app/templates/app/tour_detail.html:44
-msgid "Guides the message was sent to"
-msgstr "Giidid, kellele on sõnum saadeti"
-
-#: app/templates/app/index.html:4 app/templates/site_base.html:72
+#: app/templates/app/index.html:4 app/templates/site_base.html:70
 msgid "Home"
 msgstr "Kodu"
 
@@ -263,20 +332,24 @@ msgstr "Giidi e-post"
 msgid "Guide phone nr."
 msgstr "Giidi telefoninumber"
 
-#: app/templates/app/tour_detail.html:32
-msgid "The contents of the message"
-msgstr "Sõnumi sisu"
+#: app/templates/app/tour_detail.html:35
+msgid "Guides the message was sent to"
+msgstr "Giidid, kellele on sõnum saadeti"
 
-#: app/templates/app/tour_detail.html:51
+#: app/templates/app/tour_detail.html:49
 msgid "Please choose guides to send message to"
 msgstr "Palun valige giidid, kellele saata sõnum"
 
-#: app/templates/app/tour_detail.html:77
+#: app/templates/app/tour_detail.html:75
 msgid "Send messages to selected"
 msgstr "Saada sõnumid valitutele"
 
+#: app/templates/app/tour_detail.html:86
+msgid "The contents of the message"
+msgstr "Sõnumi sisu"
+
 #: app/templates/app/tour_list.html:5 app/templates/app/tour_list.html.py:19
-#: app/templates/site_base.html:56
+#: app/templates/site_base.html:55
 msgid "Your Tours"
 msgstr "Sinu tuurid"
 
@@ -298,42 +371,77 @@ msgstr "Lk: %(current)s - %(total)s-st"
 msgid "%(count)s of %(total)s"
 msgstr "%(count)s kirjet %(total)s-st"
 
-#: app/templates/site_base.html:76
+#: app/templates/pinax_theme_bootstrap/_account_bar.html:12
+msgid "Settings"
+msgstr "Seaded"
+
+#: app/templates/pinax_theme_bootstrap/_account_bar.html:14
+msgid "Admin"
+msgstr "Admin"
+
+#: app/templates/pinax_theme_bootstrap/_account_bar.html:18
+msgid "Log out"
+msgstr "Logi välja"
+
+#: app/templates/pinax_theme_bootstrap/_account_bar.html:23
+#: app/templates/pinax_theme_bootstrap/login.html:7
+#: app/templates/pinax_theme_bootstrap/login.html:19
+msgid "Log in"
+msgstr "Logi sisse"
+
+#: app/templates/pinax_theme_bootstrap/_account_bar.html:25
+#: app/templates/pinax_theme_bootstrap/login.html:25
+msgid "Sign up"
+msgstr "Registreeri"
+
+#: app/templates/pinax_theme_bootstrap/login.html:13
+msgid "Log in to an existing account"
+msgstr "Logi sisse olemasoleva kontoga"
+
+#: app/templates/pinax_theme_bootstrap/login.html:20
+msgid "Forgot your password?"
+msgstr "Unustasid parooli?"
+
+#: app/templates/pinax_theme_bootstrap/login.html:25
+msgid "Don't have an account?"
+msgstr "Sul ei ole kontot?"
+
+#: app/templates/site_base.html:74
 msgid "Contact"
 msgstr "Kontakt"
 
-#: app/templates/site_base.html:79
+#: app/templates/site_base.html:77
 msgid "Copyright &copy; Agentizer 2015. All Rights Reserved"
 msgstr "Autoriõigus &copy; Agentizer 2015. Kõik õigused kaitstud"
 
-#: app/views.py:26
+#: app/views.py:29
 msgid "offers a job"
 msgstr "pakub tööd"
 
-#: app/views.py:26
+#: app/views.py:29
 msgid "from"
 msgstr "alates"
 
-#: app/views.py:26
+#: app/views.py:29
 msgid "to"
 msgstr "kuni"
 
-#: app/views.py:26
+#: app/views.py:29
 msgid "Please respond"
 msgstr "Palun vastake"
 
-#: app/views.py:65
+#: app/views.py:74
 msgid "Some group"
 msgstr "Mingi grupp"
 
-#: app/views.py:69
+#: app/views.py:78
 msgid "Tervis spa"
 msgstr "Tervis spaa"
 
-#: app/views.py:70
+#: app/views.py:79
 msgid "Town Hall square"
 msgstr "Raekoja plats"
 
-#: app/views.py:71
+#: app/views.py:80
 msgid "Walking tour in Tallinn old town"
 msgstr "Jalutamine Tallinna vanalinnas"
