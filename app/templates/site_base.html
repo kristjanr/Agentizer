@@ -48,7 +48,6 @@
 
 {% block nav %}
     <ul class="nav navbar-nav ">
-        {% if user.is_staff %}
             <li>
                 <a href="{% url 'add_tour' %}">{% trans "Add Tour" %}</a>
             </li>
@@ -61,7 +60,6 @@
             <li>
                 <a href="/guide">{% trans "All Guides" %}</a>
             </li>
-        {% endif %}
     </ul>
 {% endblock %}
 {% block footer %}

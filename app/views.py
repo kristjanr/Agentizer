@@ -2,7 +2,6 @@ import logging
 from hashlib import md5
 
 import account.views
-from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -10,9 +9,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.dateparse import parse_datetime
 from django_filters.views import FilterView
 from django_tables2 import RequestConfig, SingleTableView
-
 from django.utils.translation import ugettext as _
 import requests
+
+from django.contrib.auth import REDIRECT_FIELD_NAME
+
+from django.contrib.auth.decorators import user_passes_test
+from AgentOrganizer.settings import LOGIN_URL
 
 from app.filters import TourFilter
 from app.forms import TourForm, SignupForm, GuideForm
@@ -31,10 +34,16 @@ def md5_hash(s):
     return md5(s.encode('utf-8')).hexdigest()[:8]
 
 
-@staff_member_required
+def protected_area(view_func):
+    return user_passes_test(
+        lambda u: u.is_active,
+        login_url=LOGIN_URL,
+        redirect_field_name=REDIRECT_FIELD_NAME
+    )(view_func)
+
+
+@protected_area
 def add_or_edit_tour(request, tour_id=None):
-    if not request.user.is_staff:
-        return redirect('/')
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -75,7 +84,7 @@ def add_or_edit_tour(request, tour_id=None):
     return render(request, 'app/add_tour.html', {'form': form, 'tour_id': tour_id})
 
 
-@staff_member_required
+@protected_area
 def add_guides(request, tour_id):
     tour = get_object_or_404(Tour, id=tour_id, user=request.user)
     if tour.accepted:
@@ -101,7 +110,7 @@ def add_guides(request, tour_id):
     return render(request, 'app/tour_detail.html', context=context)
 
 
-@staff_member_required
+@protected_area
 def send_sms(request):
     tour_id = request.POST.get('tour_id')
     tour = get_object_or_404(Tour, id=tour_id, user=request.user)
@@ -151,7 +160,7 @@ class StaffMemberRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
         view = super(StaffMemberRequiredMixin, cls).as_view(**initkwargs)
-        return staff_member_required(view)
+        return protected_area(view)
 
 
 class FilterTableView(FilterView, SingleTableView):

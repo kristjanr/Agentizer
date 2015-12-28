@@ -141,6 +141,7 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LOGIN_URL = '/account/login'
+THEME_CONTACT_EMAIL = 'hello@agentizer.com'
 
 SITE_ID = '1'
 
