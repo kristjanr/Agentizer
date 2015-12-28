@@ -83,9 +83,10 @@ def add_guides(request, tour_id):
 
     sms_text = create_sms_text(tour.user.profile.company_name, tour)
 
-    guides_list = Guide.objects.order_by('name')
-
     guidetours_sent = tour.guidetour_set.all()
+
+    guides_list = Guide.objects.exclude(id__in=[o.guide_id for o in guidetours_sent]).order_by('name')
+
     context = dict(
         sms_text=sms_text,
         guides_list=guides_list,
@@ -97,7 +98,7 @@ def add_guides(request, tour_id):
         table = GuideTourTable(guidetours_sent)
         RequestConfig(request).configure(table)
         context['table'] = table
-    return render(request, 'app/guidetours_add.html', context=context)
+    return render(request, 'app/tour_detail.html', context=context)
 
 
 @staff_member_required
@@ -128,8 +129,8 @@ def send_sms(request):
             'to': guide.phone_number,
         }
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
-        # r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
-        # logger.warning('post response: %s', r.content)
+        r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
+        logger.warning('post response: %s', r.content)
     return redirect('add_guides', tour_id)
 
 

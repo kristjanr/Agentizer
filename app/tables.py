@@ -70,5 +70,5 @@ class TourTable(tables.Table):
         attrs = {'class': 'paleblue'}
         verbose_name_plural = 'stability_dashboard'
 
-    sent = django_tables2.BooleanColumn(orderable=False, verbose_name=_('SMS sent'))
+    sent = django_tables2.BooleanColumn(orderable=False, verbose_name=_('Message sent'))
     accepted = django_tables2.BooleanColumn(null=True, orderable=False, verbose_name=_('Guide accepted'))

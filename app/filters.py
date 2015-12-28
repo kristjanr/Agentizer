@@ -23,5 +23,5 @@ def filter_accepted(queryset, value):
 
 
 class TourFilter(django_filters.FilterSet):
-    sent = django_filters.BooleanFilter(action=filter_sent, label=_('SMS sent'))
+    sent = django_filters.BooleanFilter(action=filter_sent, label=_('Message sent'))
     accepted = django_filters.BooleanFilter(action=filter_accepted, label=_('Guide accepted'))

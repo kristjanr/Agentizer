@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-27 17:11-0600\n"
+"POT-Creation-Date: 2015-12-27 17:49-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,16 +27,15 @@ msgid "English"
 msgstr "Inglise keel"
 
 #: app/filters.py:26 app/tables.py:73
-msgid "SMS sent"
-msgstr "SMS saadetud"
+msgid "Message sent"
+msgstr "Sõnum saadetud"
 
 #: app/filters.py:27 app/tables.py:74
 msgid "Guide accepted"
 msgstr "Giid nõus"
 
 #: app/mobile_views.py:12 app/templates/app/accepted.html:14
-#: app/templates/app/guidetours_add.html:11 app/templates/app/respond.html:12
-#: app/templates/app/tour_detail.html:8 app/templates/app/tour_detail.html:18
+#: app/templates/app/respond.html:12 app/templates/app/tour_detail.html:26
 msgid "Tour details"
 msgstr "Tuuri üksikasjad"
 
@@ -44,15 +43,15 @@ msgstr "Tuuri üksikasjad"
 msgid "yes"
 msgstr "jah"
 
-#: app/models.py:7 app/templates/app/guidetours_add.html:33
+#: app/models.py:7 app/templates/app/tour_detail.html:62
 msgid "Name"
 msgstr "Nimi"
 
-#: app/models.py:8 app/models.py:59 app/templates/app/guidetours_add.html:34
+#: app/models.py:8 app/models.py:59 app/templates/app/tour_detail.html:63
 msgid "Phone number"
 msgstr "Telefoninumber"
 
-#: app/models.py:9 app/templates/app/guidetours_add.html:35
+#: app/models.py:9 app/templates/app/tour_detail.html:64
 msgid "E-mail"
 msgstr "E-post"
 
@@ -173,25 +172,13 @@ msgstr "Kustuta"
 msgid "All Guides"
 msgstr "Kõik giidid"
 
-#: app/templates/app/guides.html:34
-msgid "Guides the tour invitation was sent to"
-msgstr "Giidid, kellele pakkumine saadeti"
+#: app/templates/app/guides.html:34 app/templates/app/tour_detail.html:44
+msgid "Guides the message was sent to"
+msgstr "Giidid, kellele on sõnum saadeti"
 
-#: app/templates/app/guidetours_add.html:6
-msgid "Select guides"
-msgstr "Vali giidid"
-
-#: app/templates/app/guidetours_add.html:15
-msgid "SMS which will be sent to selected tour guides"
-msgstr "SMS, mis saadetakse valitud giididele"
-
-#: app/templates/app/guidetours_add.html:22
-msgid "Please choose guides to send SMS"
-msgstr "Palun valige giidid, kellele saata SMS"
-
-#: app/templates/app/guidetours_add.html:50
-msgid "Send SMS to selected"
-msgstr "Saada valitutele SMS"
+#: app/templates/app/index.html:4 app/templates/site_base.html:72
+msgid "Home"
+msgstr "Kodu"
 
 #: app/templates/app/index.html:17
 msgid ""
@@ -276,6 +263,18 @@ msgstr "Giidi e-post"
 msgid "Guide phone nr."
 msgstr "Giidi telefoninumber"
 
+#: app/templates/app/tour_detail.html:32
+msgid "The contents of the message"
+msgstr "Sõnumi sisu"
+
+#: app/templates/app/tour_detail.html:51
+msgid "Please choose guides to send message to"
+msgstr "Palun valige giidid, kellele saata sõnum"
+
+#: app/templates/app/tour_detail.html:77
+msgid "Send messages to selected"
+msgstr "Saada sõnumid valitutele"
+
 #: app/templates/app/tour_list.html:5 app/templates/app/tour_list.html.py:19
 #: app/templates/site_base.html:56
 msgid "Your Tours"
@@ -298,10 +297,6 @@ msgstr "Lk: %(current)s - %(total)s-st"
 #, python-format
 msgid "%(count)s of %(total)s"
 msgstr "%(count)s kirjet %(total)s-st"
-
-#: app/templates/site_base.html:72
-msgid "Home"
-msgstr "Kodu"
 
 #: app/templates/site_base.html:76
 msgid "Contact"
