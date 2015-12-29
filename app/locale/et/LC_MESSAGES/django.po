@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-27 19:08-0600\n"
+"POT-Creation-Date: 2015-12-29 13:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,15 +201,13 @@ msgstr "Muuda tuuri andmeid"
 msgid "Add Tour"
 msgstr "Lisa tuur"
 
-#: app/templates/app/add_tour.html:46 app/templates/app/guide_form.html:45
-#: app/views.py:58
-msgid "Save"
-msgstr "Salvesta"
+#: app/templates/app/add_tour.html:46
+msgid "Save & Close"
+msgstr "Salvesta & sulge"
 
 #: app/templates/app/add_tour.html:47
-#: app/templates/django_tables2/table.html:63
-msgid "Next"
-msgstr "Järgmine"
+msgid "Save & Next"
+msgstr "Salvesta & edasi"
 
 #: app/templates/app/guide_confirm_delete.html:4
 msgid "Delete Guide"
@@ -236,6 +234,10 @@ msgstr "Lisa giid"
 msgid "Edit Guide"
 msgstr "Muuda giidi andmeid"
 
+#: app/templates/app/guide_form.html:45 app/views.py:58
+msgid "Save"
+msgstr "Salvesta"
+
 #: app/templates/app/guide_form.html:50
 msgid "Delete"
 msgstr "Kustuta"
@@ -251,11 +253,10 @@ msgstr "Kodu"
 
 #: app/templates/app/index.html:17
 msgid ""
-"a fast and effective online tool for travel agents for finding a guide for "
-"an upcoming tour"
+"a fast and effective online tool for travel agents to find guides for tours"
 msgstr ""
-"kiire ja efektiivne online tööriist, mis aitab reisiagentidel leida tuurile "
-"giidi"
+"kiire ja efektiivne online tööriist, mis aitab reisiagentidel leida "
+"tuuridele giide"
 
 #: app/templates/app/index.html:47
 msgid ""
@@ -365,6 +366,10 @@ msgstr "Eelmine"
 #, python-format
 msgid "Page %(current)s of %(total)s"
 msgstr "Lk: %(current)s - %(total)s-st"
+
+#: app/templates/django_tables2/table.html:63
+msgid "Next"
+msgstr "Järgmine"
 
 #: app/templates/django_tables2/table.html:66
 #, python-format

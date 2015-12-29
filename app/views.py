@@ -198,13 +198,11 @@ class GuideListView(StaffMemberRequiredMixin, SingleTableView):
 class GuideCreateView(StaffMemberRequiredMixin, CreateView):
     model = Guide
     form_class = GuideForm
-    success_url = reverse_lazy('guides')
 
 
 class GuideUpdate(StaffMemberRequiredMixin, UpdateView):
     model = Guide
     form_class = GuideForm
-    success_url = reverse_lazy('guides')
 
 
 class GuideDelete(StaffMemberRequiredMixin, DeleteView):
