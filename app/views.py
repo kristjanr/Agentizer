@@ -55,8 +55,8 @@ def add_or_edit_tour(request, tour_id=None):
             tour_dict['id'] = get_object_or_404(Tour, id=tour_id).id if tour_id else None
             tour = Tour(**tour_dict)
             tour.save()
-            if request.POST['submit'] == _('Save'):
-                return redirect('edit_tour', tour.id)
+            if request.POST['submit'] == _('Save & Close'):
+                return redirect('tours')
             # redirect to add guides url with form id
             return redirect('add_guides', tour.id)
     elif tour_id:
