@@ -13,6 +13,7 @@
       ga('create', 'UA-70848099-1', 'auto');
       ga('send', 'pageview');
 
+
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -22,25 +23,23 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
     <link rel="shortcut icon" type="image/png" href="{% static 'app/images/favicon.ico' %}"/>
-    {% block styles %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-              integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
-        <!-- Custom Fonts -->
-        <link href="{% static 'app/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="{% static 'app/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
-        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}"/>
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}"/>
 
-        <style xmlns="http://www.w3.org/1999/html">
-            body {
-            padding-top: 70px;
-            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-            }
-        </style>
-        <link rel="stylesheet" href="{% static "django_tables2/themes/paleblue/css/screen.css" %}"/>
-        {{ form.media }}e
-    {% endblock %}
+    <style xmlns="http://www.w3.org/1999/html">
+        body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+    </style>
+    <link rel="stylesheet" href="{% static "django_tables2/themes/paleblue/css/screen.css" %}"/>
+    {{ form.media }}
     {% block extrahead %}{% endblock %}
 {% endblock %}
 {% block site_brand %}<a class="navbar-brand" href="{% url "home" %}">Agentizer</a>{% endblock %}
@@ -57,18 +56,18 @@
 
 {% block nav %}
     <ul class="nav navbar-nav ">
-            <li>
-                <a href="{% url 'add_tour' %}">{% trans "Add Tour" %}</a>
-            </li>
-            <li>
-                <a href="/tour">{% trans "Your Tours" %}</a>
-            </li>
-            <li>
-                <a href="{% url 'guide-add' %}">{% trans "Add Guide" %}</a>
-            </li>
-            <li>
-                <a href="/guide">{% trans "All Guides" %}</a>
-            </li>
+        <li>
+            <a href="{% url 'add_tour' %}">{% trans "Add Tour" %}</a>
+        </li>
+        <li>
+            <a href="/tour">{% trans "Your Tours" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'guide-add' %}">{% trans "Add Guide" %}</a>
+        </li>
+        <li>
+            <a href="/guide">{% trans "All Guides" %}</a>
+        </li>
     </ul>
 {% endblock %}
 {% block footer %}

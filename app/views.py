@@ -197,6 +197,7 @@ class GuideListView(StaffMemberRequiredMixin, SingleTableView):
 
 class GuideCreateView(StaffMemberRequiredMixin, CreateView):
     model = Guide
+    success_url = reverse_lazy('guides')
     form_class = GuideForm
 
 
