@@ -15,7 +15,7 @@ import requests
 from django.contrib.auth import REDIRECT_FIELD_NAME
 
 from django.contrib.auth.decorators import user_passes_test
-from AgentOrganizer.settings import LOGIN_URL
+from AgentOrganizer.settings import LOGIN_URL, MESSENTE_PASSWORD, MESSENTE_USER
 
 from app.filters import TourFilter
 from app.forms import TourForm, SignupForm, GuideForm
@@ -131,8 +131,8 @@ def send_sms(request):
         sms_text = sms_text.replace('[uid]', guide_tour.uid)
 
         post_body = {
-            'username': 'f35583f5f9fcd7a8a13f36a10afca6aa',
-            'password': 'ea2254154190fab7a6a33c3ec79a21f0',
+            'username': MESSENTE_USER,
+            'password': MESSENTE_PASSWORD,
             'text': sms_text,
             'from': 'Agentizer',
             'to': guide.phone_number,

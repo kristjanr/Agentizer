@@ -144,6 +144,9 @@ DEFAULT_FROM_EMAIL = 'Agentizer <kristjan.r+agentizer@gmail.com>'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 
+MESSENTE_USER = os.environ['MESSENTE_USER']
+MESSENTE_PASSWORD = os.environ['MESSENTE_PASSWORD']
+
 MIGRATION_MODULES = {
     'sites': 'AgentOrganizer.migrations.sites',
 }
