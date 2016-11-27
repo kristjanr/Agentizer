@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 
 def create_sms_text(company_name, tour):
-    sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _('Please respond') + ': http://agentizer.com/respond?uid=[uid]'
+    sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _('Please respond') + ': http://agentizer.herokuapp.com/respond?uid=[uid]'
     return sms_text_template % (company_name, tour.start_time.strftime('%Y-%m-%d %H:%M'), tour.end_time.strftime('%Y-%m-%d %H:%M'))
 
 
@@ -147,8 +147,8 @@ class SignupView(account.views.SignupView):
     form_class = SignupForm
 
     def after_signup(self, form):
-        self.create_profile(form)
         super(SignupView, self).after_signup(form)
+        self.create_profile(form)
 
     def create_profile(self, form):
         profile = Profile.objects.create(user=self.created_user)

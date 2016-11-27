@@ -130,16 +130,17 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LOGIN_URL = '/account/login'
-THEME_CONTACT_EMAIL = 'hello@agentizer.com'
+THEME_CONTACT_EMAIL = 'kristjan.r+agentizer@gmail.com'
 
 SITE_ID = '1'
 
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
-EMAIL_HOST = 'mail.veebimajutus.ee'
-EMAIL_PORT = '465'
-EMAIL_USE_SSL = True
-DEFAULT_FROM_EMAIL = 'Agentizer <no-reply-@agentizer.com>'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'Agentizer <kristjan.r+agentizer@gmail.com>'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 
