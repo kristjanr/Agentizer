@@ -1,7 +1,7 @@
-from django.utils.safestring import mark_safe
-from django_tables2 import tables
 import django_tables2
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
+from django_tables2 import tables
 
 from app.models import Tour, GuideTour, Guide
 
@@ -33,6 +33,7 @@ class GuideTourTable(tables.Table):
         exclude = (
             'id',
             'uid',
+            'sms_unique_id',
             'guide',
             'tour',
         )
@@ -40,10 +41,13 @@ class GuideTourTable(tables.Table):
             'name',
             'phone_number',
             'email',
+            'sent',
+            'delivered',
+            'failed',
             'seen',
             'answer',
         )
-        order_by = ('-seen', 'answer',)
+        order_by = ('-delivered', '-sent', '-seen', 'answer',)
 
         attrs = {"class": "paleblue"}
 

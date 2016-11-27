@@ -10,7 +10,7 @@ def insert_sites(apps, schema_editor):
     Site.objects.all().delete()
 
     # Register SITE_ID = 1
-    Site.objects.create(id=1, domain='agentizer.herokuapp.com', name='Agentizer')
+    Site.objects.create(id=1, domain='localhost:8000', name='Agentizer')
 
 
 class Migration(migrations.Migration):

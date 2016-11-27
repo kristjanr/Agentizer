@@ -2,21 +2,20 @@ import logging
 from hashlib import md5
 
 import account.views
+import requests
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
-from django.views.generic.detail import DetailView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils.dateparse import parse_datetime
+from django.utils.translation import ugettext as _
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from django_filters.views import FilterView
 from django_tables2 import RequestConfig, SingleTableView
-from django.utils.translation import ugettext as _
-import requests
 
-from django.contrib.auth import REDIRECT_FIELD_NAME
-
-from django.contrib.auth.decorators import user_passes_test
 from AgentOrganizer.settings import LOGIN_URL, MESSENTE_PASSWORD, MESSENTE_USER
-
 from app.filters import TourFilter
 from app.forms import TourForm, SignupForm, GuideForm
 from app.models import Guide, GuideTour, Tour, Profile
@@ -26,8 +25,10 @@ logger = logging.getLogger(__name__)
 
 
 def create_sms_text(company_name, tour):
-    sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _('Please respond') + ': http://agentizer.herokuapp.com/respond?uid=[uid]'
-    return sms_text_template % (company_name, tour.start_time.strftime('%Y-%m-%d %H:%M'), tour.end_time.strftime('%Y-%m-%d %H:%M'))
+    sms_text_template = '%s ' + _('offers a job') + ': ' + _('from') + ' %s ' + _('to') + ' %s. ' + _(
+        'Please respond') + ': http://%s/respond?uid=[uid]' % Site.objects.get_current()
+    return sms_text_template % (
+        company_name, tour.start_time.strftime('%Y-%m-%d %H:%M'), tour.end_time.strftime('%Y-%m-%d %H:%M'))
 
 
 def md5_hash(s):
@@ -103,11 +104,47 @@ def add_guides(request, tour_id):
         tour_id=tour.id,
         user=tour.user,
     )
+    update_sms_status(guidetours_sent)
+
     if guidetours_sent:
         table = GuideTourTable(guidetours_sent)
         RequestConfig(request).configure(table)
         context['table'] = table
+
     return render(request, 'app/tour_detail.html', context=context)
+
+
+def update_sms_status(guidetours):
+    for guide_tour in guidetours:
+        if guide_tour.delivered or guide_tour.failed:
+            continue
+
+        params = {
+            'username': MESSENTE_USER,
+            'password': MESSENTE_PASSWORD,
+            'sms_unique_id': guide_tour.sms_unique_id,
+        }
+        r = requests.get('http://api2.messente.com/get_dlr_response/', params=params)
+        if r.status_code != 200 or 'OK ' not in r.text:
+            logger.warning('Could not get proper response when checking SMS delivery: HTTP STATUS CODE: %d, %s',
+                           r.status_code, r.text)
+            continue
+
+        sms_status = r.text.lstrip('OK ')
+        if sms_status == 'DELIVERED':
+            guide_tour.delivered = True
+            guide_tour.sent = True
+            guide_tour.failed = False
+        elif sms_status == 'SENT':
+            guide_tour.delivered = False
+            guide_tour.sent = True
+            guide_tour.failed = False
+        elif sms_status == 'FAILED':
+            guide_tour.delivered = False
+            guide_tour.sent = False
+            guide_tour.failed = True
+
+        guide_tour.save()
 
 
 @protected_area
@@ -126,9 +163,8 @@ def send_sms(request):
         uid = md5_hash(str(tour.id) + '' + str(guide.id))
         if GuideTour.objects.filter(uid=uid):
             continue
-        guide_tour = GuideTour.objects.create(uid=uid, guide=guide, tour=tour)
         sms_text = create_sms_text(request.user.profile.company_name, tour)
-        sms_text = sms_text.replace('[uid]', guide_tour.uid)
+        sms_text = sms_text.replace('[uid]', uid)
 
         post_body = {
             'username': MESSENTE_USER,
@@ -139,7 +175,11 @@ def send_sms(request):
         }
         logger.warning('Sending SMS to: %s. Message: %s', post_body['to'], post_body['text'])
         r = requests.post('http://api2.messente.com/send_sms/', data=post_body)
-        logger.warning('post response: %s', r.content)
+        if r.status_code == 200 and 'OK ' in r.text:
+            GuideTour.objects.create(uid=uid, guide=guide, tour=tour, sms_unique_id=r.text.lstrip('OK '))
+            logger.info('post response: %s', r.content)
+        else:
+            logger.warning('post response: %s', r.text)
     return redirect('add_guides', tour_id)
 
 
@@ -188,6 +228,11 @@ class TourDetailView(StaffMemberRequiredMixin, DetailView):
         RequestConfig(self.request).configure(table)
         context['table'] = table
         return context
+
+    def get(self, request, *args, **kwargs):
+        # update GuideTours with messente API if needed
+        foo = ''
+        return super().get(request, *args, **kwargs)
 
 
 class GuideListView(StaffMemberRequiredMixin, SingleTableView):

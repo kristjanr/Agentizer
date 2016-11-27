@@ -48,8 +48,12 @@ class Tour(models.Model):
 
 class GuideTour(models.Model):
     uid = models.CharField(unique=True, max_length=8, default=None)
+    sms_unique_id = models.CharField(unique=True, max_length=44, default=None)
     guide = models.ForeignKey(Guide, on_delete=models.CASCADE)
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    sent = models.NullBooleanField(null=True, verbose_name=_('Sent'))
+    delivered = models.NullBooleanField(null=True, verbose_name=_('Delivered'))
+    failed = models.NullBooleanField(null=True, verbose_name=_('Sending failed'))
     seen = models.BooleanField(default=False, verbose_name=_('Seen'))
     answer = models.NullBooleanField(null=True, verbose_name=_('Answer'))
 
