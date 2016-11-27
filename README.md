@@ -10,7 +10,8 @@ It was created during and after the Garage 48 Pärnu 2015 - a hackathon in Eston
 * `export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"`
 * `pip install -r requirements`
 * `psql -c "CREATE DATABASE agentizer;"`
-* create the .env file and set the correct env variables in the .env file:
+* `cp .env.example .env`
+* set the correct env variables in the .env file:
     * EMAIL_HOST_USER - gmail username
     * EMAIL_HOST_PASSWORD - [create an app password for gmail](https://security.google.com/settings/security/apppasswords?pli=1)
     * DATABASE_URL
