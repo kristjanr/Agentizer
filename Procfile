@@ -1,1 +1,1 @@
-web: bin/proximo gunicorn AgentOrganizer.wsgi --log-file -
+web: gunicorn AgentOrganizer.wsgi --log-file -
